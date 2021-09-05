@@ -6,9 +6,10 @@
 		"start": "ng serve",
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
-		"test": "ng test"
+		"test": "ng test",
+		"publish": "ng build; surge dist/SWE632Project swe632-project.surge.sh"
 	},
-	"private": true,
+	"private": false,
 	"dependencies": {
 		"@angular/animations": "~12.2.0",
 		"@angular/common": "~12.2.0",

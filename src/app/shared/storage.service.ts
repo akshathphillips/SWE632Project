@@ -21,9 +21,8 @@ export class StorageService {
 	fetch() {
 		this.httpClient.get(
 			'https://swe632project-7fc10-default-rtdb.firebaseio.com/data.json'
-		)
-			.subscribe(response => {
+		).subscribe(response => {
 				console.log(response);
-			})
+		})
 	}
 }
