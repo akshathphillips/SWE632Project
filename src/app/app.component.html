@@ -1,17 +1,30 @@
-<div>
-	<button (click)="onClickStore()" class="btn btn-primary" type="button">Store</button>
-	<button (click)="onClickFetch()" class="btn btn-secondary" type="button">Fetch</button>
-</div>
+<!--Header-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" routerLink="/home" routerLinkActive="active">Pizza Creation</a>
+		<ul class="navbar-nav flex-grow-1">
+			<li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a></li>
+			<li class="nav-item"><a class="nav-link" routerLink="/menu" routerLinkActive="active">Menu</a></li>
+		</ul>
+		<ul class="navbar-nav justify-content-end">
+			<li class="nav-item">
+				<a aria-current="page" class="nav-link" href="#">Log in</a>
+			</li>
+			<li class="nav-item">
+				<a aria-current="page" class="nav-link" href="#">Log out</a>
+			</li>
+			<li class="nav-item">
+				<a aria-current="page" class="nav-link" href="#">Cart</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<!--End Header-->
 
-Hello I am here
-<!--<div>-->
-<!--	<div class="mb-3">-->
-<!--		<label for="exampleFormControlInput1" class="form-label">Email address</label>-->
-<!--		<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">-->
-<!--	</div>-->
-<!--	<div class="mb-3">-->
-<!--		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>-->
-<!--		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
-<!--	</div>-->
-<!--</div>-->
+<!--Main-->
 <router-outlet></router-outlet>
+<!--End Main-->
+
+<!--Footer-->
+
+<!--End Footer-->
