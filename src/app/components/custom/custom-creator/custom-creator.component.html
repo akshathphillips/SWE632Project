@@ -1,0 +1,29 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<p>Selected Crust</p>
+			{{(selectedCrust | async)?.name}}
+			{{(selectedCrust | async)?.addedCount}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p>Selected Sauce</p>
+			{{(selectedSauce | async)?.name}}
+			{{(selectedSauce | async)?.addedCount}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p>Selected Toppings</p>
+			<ul>
+				<li *ngFor="let topping of (selectedToppings | async); index as i;">
+					{{topping.name}}
+					{{topping?.addedCount}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

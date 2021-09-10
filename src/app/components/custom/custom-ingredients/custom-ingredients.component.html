@@ -1,0 +1,38 @@
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+	<div class="row">
+		<div class="col">
+			<p class="lead">Crust</p>
+			<ul>
+				<li (click)="onClickAddCrust(crust)" *ngFor="let crust of crusts; index as i;">
+					{{crust.name}}
+					<button (click)="onClickRemoveCrust()" class="btn btn-primary">Clear</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p class="lead">Sauce</p>
+			<ul>
+				<li (click)="onClickAddSauce(sauce)" *ngFor="let sauce of sauces; index as i;">
+					{{sauce.name}}
+					<button (click)="onClickRemoveSauce()" class="btn btn-primary">Clear</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col">
+			<p class="lead">Toppings</p>
+			<ul>
+				<li (click)="onClickAddTopping(topping)" *ngFor="let topping of toppings; index as i;">
+					{{topping.name}}
+					<button (click)="onClickRemoveTopping(i)" class="btn btn-primary">Clear</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
