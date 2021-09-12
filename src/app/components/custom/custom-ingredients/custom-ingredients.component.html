@@ -1,38 +1,68 @@
-<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-	<div class="row">
-		<div class="col">
-			<p class="lead">Crust</p>
-			<ul>
-				<li (click)="onClickAddCrust(crust)" *ngFor="let crust of crusts; index as i;">
-					{{crust.name}}
-					<button (click)="onClickRemoveCrust()" class="btn btn-primary">Clear</button>
-				</li>
-			</ul>
+<div class="container-fluid">
+
+	<p class="lead">Crust</p>
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div *ngFor="let crust of crusts; index as i;" class="col">
+			<div class="card h-100">
+				<img [src]="crust.image" class="card-img-top">
+				<div class="card-body">
+					<h5 class="card-title">{{crust.name}}</h5>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center">
+						<button (click)="onClickAddCrust(crust)" class="btn btn-primary" type="button">
+							<i class="bi bi-plus"></i>
+						</button>
+						<button class="btn btn-secondary" type="button">
+							<i class="bi bi-dash"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<p class="lead">Sauce</p>
-			<ul>
-				<li (click)="onClickAddSauce(sauce)" *ngFor="let sauce of sauces; index as i;">
-					{{sauce.name}}
-					<button (click)="onClickRemoveSauce()" class="btn btn-primary">Clear</button>
-				</li>
-			</ul>
+	<p class="lead">Sauces</p>
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div *ngFor="let sauce of sauces; index as i;" class="col">
+			<div class="card h-100">
+				<img [src]="sauce.image" class="card-img-top">
+				<div class="card-body">
+					<h5 class="card-title">{{sauce.name}}</h5>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center">
+						<button (click)="onClickAddSauce(sauce)" class="btn btn-primary" type="button">
+							<i class="bi bi-plus"></i>
+						</button>
+						<button class="btn btn-secondary" type="button">
+							<i class="bi bi-dash"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="col">
-			<p class="lead">Toppings</p>
-			<ul>
-				<li (click)="onClickAddTopping(topping)" *ngFor="let topping of toppings; index as i;">
-					{{topping.name}}
-					<button (click)="onClickRemoveTopping(i)" class="btn btn-primary">Clear</button>
-				</li>
-			</ul>
+	<p class="lead">Toppings</p>
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div *ngFor="let topping of toppings; index as i;" class="col">
+			<div class="card h-100">
+				<img [src]="topping.image" class="card-img-top">
+				<div class="card-body">
+					<h5 class="card-title">{{topping.name}}</h5>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center">
+						<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
+							<i class="bi bi-plus"></i>
+						</button>
+						<button class="btn btn-secondary" type="button">
+							<i class="bi bi-dash"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

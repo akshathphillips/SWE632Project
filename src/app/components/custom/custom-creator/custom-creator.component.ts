@@ -1,13 +1,6 @@
-import {
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	OnDestroy,
-	OnInit,
-	ViewEncapsulation
-} from '@angular/core';
-import { Crust, CustomService, Sauce, Topping } from "../../../services/custom.service";
-import { Subject, Subscription } from "rxjs";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Crust, CustomService, Sauce, Topping } from "../../../services";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-custom-creator',
@@ -18,17 +11,17 @@ import { Subject, Subscription } from "rxjs";
 })
 export class CustomCreatorComponent implements OnInit, OnDestroy {
 
-	selectedCrust = new Subject<Crust>();
+	selectedCrust = new BehaviorSubject<Crust | null>(null);
 
-	selectedSauce = new Subject<Sauce>();
+	selectedSauce = new BehaviorSubject<Sauce | null>(null);
 
-	selectedToppings = new Subject<Topping[]>();
+	selectedToppings = new BehaviorSubject<Topping[] | null>(null);
 
 	crustSubscription: Subscription | undefined;
 	sauceSubscription: Subscription | undefined;
 	toppingsSubscription: Subscription | undefined;
 
-	constructor(private customService: CustomService, private cd: ChangeDetectorRef) {
+	constructor(private customService: CustomService) {
 	}
 
 	ngOnInit(): void {
@@ -41,9 +34,7 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 		});
 
 		this.toppingsSubscription = this.customService.toppingsChanged.subscribe((v) => {
-			console.log(v);
 			this.selectedToppings.next(v)
-			this.cd.detectChanges();
 		});
 	}
 

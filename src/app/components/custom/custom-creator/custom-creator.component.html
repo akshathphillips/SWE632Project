@@ -1,29 +1,56 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col">
-			<p>Selected Crust</p>
-			{{(selectedCrust | async)?.name}}
-			{{(selectedCrust | async)?.addedCount}}
-		</div>
-	</div>
+<div *ngIf="(selectedCrust | async) || (selectedSauce | async) || (selectedToppings | async)"
+	 class="container-fluid sticky-top my-5">
+	<ul class="list-group card">
+		<li *ngIf="(selectedCrust | async)"
+			class="list-group-item d-flex justify-content-between align-items-start">
+			<div class="ms-2 me-auto">
+				<div class="fw-bold">{{(selectedCrust | async)?.name}}</div>
+				Crust
+			</div>
+			<span class="badge bg-primary rounded-pill">14</span>
+		</li>
+		<li *ngIf="(selectedSauce | async)"
+			class="list-group-item d-flex justify-content-between align-items-start">
+			<div class="ms-2 me-auto">
+				<div class="fw-bold">{{(selectedSauce | async)?.name}}</div>
+				Sauce
+			</div>
+			<span class="badge bg-primary rounded-pill">14</span>
+		</li>
+		<li *ngFor="let topping of (selectedToppings | async); index as i;"
+			class="list-group-item d-flex justify-content-between align-items-start">
+			<div class="ms-2 me-auto">
+				<div class="fw-bold">{{topping.name}}</div>
+				Topping
+			</div>
+			<span class="badge bg-primary rounded-pill">14</span>
+		</li>
+	</ul>
+	<!--	<div class="row">-->
+	<!--		<div class="col">-->
+	<!--			<p>Selected Crust</p>-->
+	<!--			{{(selectedCrust | async)?.name}}-->
+	<!--			{{(selectedCrust | async)?.addedCount}}-->
+	<!--		</div>-->
+	<!--	</div>-->
 
-	<div class="row">
-		<div class="col">
-			<p>Selected Sauce</p>
-			{{(selectedSauce | async)?.name}}
-			{{(selectedSauce | async)?.addedCount}}
-		</div>
-	</div>
+	<!--	<div class="row">-->
+	<!--		<div class="col">-->
+	<!--			<p>Selected Sauce</p>-->
+	<!--			{{(selectedSauce | async)?.name}}-->
+	<!--			{{(selectedSauce | async)?.addedCount}}-->
+	<!--		</div>-->
+	<!--	</div>-->
 
-	<div class="row">
-		<div class="col">
-			<p>Selected Toppings</p>
-			<ul>
-				<li *ngFor="let topping of (selectedToppings | async); index as i;">
-					{{topping.name}}
-					{{topping?.addedCount}}
-				</li>
-			</ul>
-		</div>
-	</div>
+	<!--	<div class="row">-->
+	<!--		<div class="col">-->
+	<!--			<p>Selected Toppings</p>-->
+	<!--			<ul>-->
+	<!--				<li *ngFor="let topping of (selectedToppings | async); index as i;">-->
+	<!--					{{topping.name}}-->
+	<!--					{{topping?.addedCount}}-->
+	<!--				</li>-->
+	<!--			</ul>-->
+	<!--		</div>-->
+	<!--	</div>-->
 </div>

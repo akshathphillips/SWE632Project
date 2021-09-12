@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Crust, CustomService, Sauce, Topping } from "../../../services/custom.service";
+import { Crust, CustomService, Sauce, Topping } from "../../../services";
 
 @Component({
 	selector: 'app-custom-ingredients',
@@ -11,25 +11,25 @@ import { Crust, CustomService, Sauce, Topping } from "../../../services/custom.s
 export class CustomIngredientsComponent implements OnInit, OnDestroy {
 
 	readonly crusts: Crust[] = [
-		{name: 'Classic', image: ''},
-		{name: 'Thin', image: ''},
-		{name: 'Thick', image: ''},
-		{name: 'Gluten Free', image: ''},
-		{name: 'Cauliflower', image: ''}
+		{name: 'Classic', image: '/assets/classic-crust.jpeg',},
+		{name: 'Thin', image: '/assets/classic-crust.jpeg',},
+		{name: 'Thick', image: '/assets/classic-crust.jpeg',},
+		{name: 'Gluten Free', image: '/assets/classic-crust.jpeg',},
+		{name: 'Cauliflower', image: '/assets/classic-crust.jpeg',}
 	]
 
 	readonly sauces: Sauce[] = [
-		{name: 'Tomato', image: ''},
-		{name: 'White', image: ''}
+		{name: 'Tomato', image: '/assets/classic-sauce.jpeg',},
+		{name: 'White', image: '/assets/classic-sauce.jpeg',}
 	]
 
 	readonly toppings: Topping[] = [
-		{name: 'Mushrooms', image: ''},
-		{name: 'Peppers', image: ''},
-		{name: 'Olives', image: ''},
-		{name: 'Pepperoni', image: ''},
-		{name: 'Chicken', image: ''},
-		{name: 'Sausage', image: ''},
+		{name: 'Mushrooms', image: '/assets/pepperoni.jpeg',},
+		{name: 'Peppers', image: '/assets/pepperoni.jpeg',},
+		{name: 'Olives', image: '/assets/pepperoni.jpeg',},
+		{name: 'Pepperoni', image: '/assets/pepperoni.jpeg',},
+		{name: 'Chicken', image: '/assets/pepperoni.jpeg',},
+		{name: 'Sausage', image: '/assets/pepperoni.jpeg',},
 	]
 
 	constructor(private customService: CustomService) {
