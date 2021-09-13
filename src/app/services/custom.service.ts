@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
+import { CartService } from "./cart.service";
 
 export interface Crust {
 	name: string;
@@ -32,7 +33,7 @@ export class CustomService {
 	private sauce: Sauce | null = null;
 	private toppings: Topping[] | null = null;
 
-	constructor() {
+	constructor(private cartService: CartService) {
 	}
 
 	addCrust(newCrust: Crust) {
@@ -96,5 +97,13 @@ export class CustomService {
 
 		this.toppings = [];
 		this.toppingsChanged.next(this.toppings.slice());
+	}
+
+	addToCart() {
+		if (this.crust && this.sauce && this.toppings && this.toppings.length) {
+			this.cartService.addPizza({crust: this.crust, sauce: this.sauce, toppings: this.toppings})
+		} else {
+
+		}
 	}
 }

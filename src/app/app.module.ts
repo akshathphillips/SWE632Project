@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import {
+	CartComponent,
 	CustomComponent,
 	CustomCreatorComponent,
 	CustomIngredientsComponent,
@@ -21,7 +22,8 @@ import {
 		PageNotFoundComponent,
 		CustomComponent,
 		CustomIngredientsComponent,
-		CustomCreatorComponent
+		CustomCreatorComponent,
+		CartComponent
 	],
 	imports: [
 		BrowserModule,

@@ -38,6 +38,10 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 		});
 	}
 
+	onClickAddToCart() {
+		this.customService.addToCart();
+	}
+
 	ngOnDestroy(): void {
 		this.crustSubscription?.unsubscribe();
 		this.sauceSubscription?.unsubscribe();
