@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Crust, CustomService, Sauce, Topping } from "../../../services";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-custom-ingredients',
@@ -11,31 +12,59 @@ import { Crust, CustomService, Sauce, Topping } from "../../../services";
 export class CustomIngredientsComponent implements OnInit, OnDestroy {
 
 	readonly crusts: Crust[] = [
-		{name: 'Classic', image: '/assets/classic-crust.jpeg',},
-		{name: 'Thin', image: '/assets/classic-crust.jpeg',},
-		{name: 'Thick', image: '/assets/classic-crust.jpeg',},
-		{name: 'Gluten Free', image: '/assets/classic-crust.jpeg',},
-		{name: 'Cauliflower', image: '/assets/classic-crust.jpeg',}
+		{name: 'Classic', image: '/assets/classic-crust.jpeg', addedCount: 0},
+		{name: 'Thin', image: '/assets/classic-crust.jpeg', addedCount: 0},
+		{name: 'Thick', image: '/assets/classic-crust.jpeg', addedCount: 0},
+		{name: 'Gluten Free', image: '/assets/classic-crust.jpeg', addedCount: 0},
+		{name: 'Cauliflower', image: '/assets/classic-crust.jpeg', addedCount: 0},
 	]
 
 	readonly sauces: Sauce[] = [
-		{name: 'Tomato', image: '/assets/classic-sauce.jpeg',},
-		{name: 'White', image: '/assets/classic-sauce.jpeg',}
+		{name: 'Tomato', image: '/assets/classic-sauce.jpeg', addedCount: 0},
+		{name: 'White', image: '/assets/classic-sauce.jpeg', addedCount: 0},
 	]
 
 	readonly toppings: Topping[] = [
-		{name: 'Mushrooms', image: '/assets/pepperoni.jpeg',},
-		{name: 'Peppers', image: '/assets/pepperoni.jpeg',},
-		{name: 'Olives', image: '/assets/pepperoni.jpeg',},
-		{name: 'Pepperoni', image: '/assets/pepperoni.jpeg',},
-		{name: 'Chicken', image: '/assets/pepperoni.jpeg',},
-		{name: 'Sausage', image: '/assets/pepperoni.jpeg',},
+		{name: 'Mushrooms', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Peppers', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Olives', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Pepperoni', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Chicken', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Sausage', image: '/assets/pepperoni.jpeg', addedCount: 0}
 	]
+
+	selectedCrust = new BehaviorSubject<Crust | null>(null);
+
+	selectedSauce = new BehaviorSubject<Sauce | null>(null);
+
+	selectedToppings = new BehaviorSubject<Topping[] | null>(null);
+
+	crustSubscription: Subscription | undefined;
+	sauceSubscription: Subscription | undefined;
+	toppingsSubscription: Subscription | undefined;
 
 	constructor(private customService: CustomService) {
 	}
 
 	ngOnInit(): void {
+		this.crustSubscription = this.customService.crustChanged.subscribe((v) => {
+			this.selectedCrust.next(v)
+		});
+
+		this.sauceSubscription = this.customService.sauceChanged.subscribe((v) => {
+			this.selectedSauce.next(v)
+		});
+
+		this.toppingsSubscription = this.customService.toppingsChanged.subscribe((v) => {
+			this.selectedToppings.next(v)
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.crustSubscription?.unsubscribe();
+		this.sauceSubscription?.unsubscribe();
+		this.toppingsSubscription?.unsubscribe();
+		this.customService.clear();
 	}
 
 	onClickAddCrust(crust: Crust) {
@@ -50,18 +79,12 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 		this.customService.addToppings(topping);
 	}
 
-	ngOnDestroy(): void {
-		this.customService.addCrust(undefined);
-		this.customService.addSauce(undefined);
-		this.customService.clearToppings();
-	}
-
 	onClickRemoveCrust() {
-		this.customService.addCrust(undefined);
+		this.customService.clearCrust();
 	}
 
 	onClickRemoveSauce() {
-		this.customService.addSauce(undefined);
+		this.customService.clearSauce();
 	}
 
 	onClickRemoveTopping(index: number) {

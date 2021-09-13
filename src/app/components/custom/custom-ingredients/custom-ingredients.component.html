@@ -10,10 +10,13 @@
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center">
-						<button (click)="onClickAddCrust(crust)" class="btn btn-primary" type="button">
+						<button (click)="onClickAddCrust(crust)"
+								[disabled]="(selectedCrust | async)?.name === crust.name"
+								class="btn btn-primary"
+								type="button">
 							<i class="bi bi-plus"></i>
 						</button>
-						<button class="btn btn-secondary" type="button">
+						<button (click)="onClickRemoveCrust()" class="btn btn-secondary" type="button">
 							<i class="bi bi-dash"></i>
 						</button>
 					</div>
@@ -35,7 +38,7 @@
 						<button (click)="onClickAddSauce(sauce)" class="btn btn-primary" type="button">
 							<i class="bi bi-plus"></i>
 						</button>
-						<button class="btn btn-secondary" type="button">
+						<button (click)="onClickRemoveSauce()" class="btn btn-secondary" type="button">
 							<i class="bi bi-dash"></i>
 						</button>
 					</div>
@@ -57,7 +60,8 @@
 						<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
 							<i class="bi bi-plus"></i>
 						</button>
-						<button class="btn btn-secondary" type="button">
+						<button (click)="onClickRemoveTopping(i)" class="btn btn-secondary"
+								type="button">
 							<i class="bi bi-dash"></i>
 						</button>
 					</div>

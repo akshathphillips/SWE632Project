@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 export interface Crust {
 	name: string;
 	image: string;
-	addedCount?: number
+	addedCount: number;
 }
 
 export interface Sauce {
 	name: string;
 	image: string;
-	addedCount?: number
+	addedCount: number;
 }
 
 export interface Topping {
 	name: string;
 	image: string;
-	addedCount?: number
+	addedCount: number;
 }
 
 @Injectable({
@@ -24,28 +24,38 @@ export interface Topping {
 })
 export class CustomService {
 
-	crustChanged = new Subject<Crust>();
-	sauceChanged = new Subject<Sauce>();
-	toppingsChanged = new Subject<Topping[]>();
+	crustChanged = new BehaviorSubject<Crust | null>(null);
+	sauceChanged = new BehaviorSubject<Sauce | null>(null);
+	toppingsChanged = new BehaviorSubject<Topping[] | null>(null);
 
-	private crust: Crust | undefined;
-	private sauce: Sauce | undefined;
-	private toppings: Topping[] | undefined;
+	private crust: Crust | null = null;
+	private sauce: Sauce | null = null;
+	private toppings: Topping[] | null = null;
 
 	constructor() {
 	}
 
-	addCrust(newCrust: Crust | undefined) {
+	addCrust(newCrust: Crust) {
 		if (newCrust)
 			newCrust.addedCount = 1;
 		this.crust = newCrust;
 		this.crustChanged.next(this.crust);
 	}
 
-	addSauce(newSauce: Sauce | undefined) {
+	clearCrust() {
+		this.crust = null;
+		this.crustChanged.next(this.crust);
+	}
+
+	addSauce(newSauce: Sauce) {
 		if (newSauce)
 			newSauce.addedCount = 1;
 		this.sauce = newSauce;
+		this.sauceChanged.next(this.sauce);
+	}
+
+	clearSauce() {
+		this.sauce = null;
 		this.sauceChanged.next(this.sauce);
 	}
 
@@ -53,30 +63,38 @@ export class CustomService {
 		if (!this.toppings)
 			this.toppings = [];
 
-		// const i = this.toppings.indexOf(topping)
-		// if (i >= 0) {
-		// 	const count = this.toppings[i].addedCount;
-		// 	this.toppings[i].addedCount = (count ? count : 0) + 1;
-		// } else {
-		// 	topping.addedCount = 1;
-		// 	this.toppings.push(topping);
-		// }
-
-		if (!this.toppings.includes(topping))
+		if (!this.toppings.includes(topping)) {
+			topping.addedCount = 1;
 			this.toppings.push(topping);
+		} else {
+			const index = this.toppings.indexOf(topping);
+			this.toppings[index].addedCount += 1;
+		}
 		this.toppingsChanged.next(this.toppings.slice());
-	}
-
-	clearToppings() {
-		this.toppings = undefined;
-		this.toppingsChanged.next(undefined);
 	}
 
 	deleteToppings(index: number) {
 		if (this.toppings && this.toppings.length) {
-			this.toppings.splice(index, 1);
-			this.toppingsChanged.next(this.toppings.slice());
-			console.log(this.toppings);
+			let topping = this.toppings[index];
+			if (topping) {
+				if (topping.addedCount > 1) {
+					topping.addedCount -= 1;
+				} else {
+					this.toppings.splice(index, 1);
+				}
+				this.toppingsChanged.next(this.toppings.slice());
+			}
 		}
+	}
+
+	clear() {
+		this.crust = null;
+		this.crustChanged.next(this.crust);
+
+		this.sauce = null;
+		this.sauceChanged.next(this.sauce);
+
+		this.toppings = [];
+		this.toppingsChanged.next(this.toppings.slice());
 	}
 }
