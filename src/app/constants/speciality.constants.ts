@@ -16,5 +16,23 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-mushroom.jpg',
 		description: '',
 		time: '5 mins'
+	},
+	{
+		name: 'Classic Chicken',
+		image: '/assets/Chicken pizza.jpg',
+		description: '',
+		time: '5 mins'
+	},
+	{
+		name: 'Classic Spinach and Tomatoes',
+		image: '/assets/Spinach and Tomatoes.jpg',
+		description: '',
+		time: '5 mins'
+	},
+	{
+		name: 'Garden fresh veggie',
+		image: '/assets/Garden fresh veggie pizza.jpg',
+		description: '',
+		time: '5 mins'
 	}
 ];
