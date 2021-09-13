@@ -1,79 +1,85 @@
 <div class="container-fluid">
-
-	<p class="lead">Crust</p>
-	<div class="row row-cols-1 row-cols-md-2 g-4">
-		<div *ngFor="let crust of crusts; index as i;" class="col">
-			<div class="card h-100">
-				<img [src]="crust.image" class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">{{crust.name}}</h5>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center">
-						<button (click)="onClickAddCrust(crust)"
-								[disabled]="
+	<h1 class="display-6">Create your own pizza</h1>
+	<div class="my-3">
+		<p class="lead">Crust</p>
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			<div *ngFor="let crust of crusts; index as i;" class="col">
+				<div class="card h-100">
+					<img [src]="crust.image" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{crust.name}}</h5>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-center">
+							<button (click)="onClickAddCrust(crust)"
+									[disabled]="
 								(selectedCrust | async)?.name === crust.name ||
 								(selectedCrust | async)?.addedCount > 0"
-								class="btn btn-primary"
-								type="button">
-							<i class="bi bi-plus"></i>
-						</button>
-						<button (click)="onClickRemoveCrust()"
-								[disabled]="(selectedCrust | async)?.name !== crust.name"
-								class="btn btn-secondary"
-								type="button">
-							<i class="bi bi-dash"></i>
-						</button>
+									class="btn btn-primary"
+									type="button">
+								<i class="bi bi-plus"></i>
+							</button>
+							<button (click)="onClickRemoveCrust()"
+									[disabled]="(selectedCrust | async)?.name !== crust.name"
+									class="btn btn-secondary"
+									type="button">
+								<i class="bi bi-dash"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<p class="lead">Sauces</p>
-	<div class="row row-cols-1 row-cols-md-2 g-4">
-		<div *ngFor="let sauce of sauces; index as i;" class="col">
-			<div class="card h-100">
-				<img [src]="sauce.image" class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">{{sauce.name}}</h5>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center">
-						<button (click)="onClickAddSauce(sauce)" [disabled]="
+	<div class="my-3">
+		<p class="lead">Sauces</p>
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			<div *ngFor="let sauce of sauces; index as i;" class="col">
+				<div class="card h-100">
+					<img [src]="sauce.image" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{sauce.name}}</h5>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-center">
+							<button (click)="onClickAddSauce(sauce)" [disabled]="
 								(selectedSauce | async)?.name === sauce.name ||
 								(selectedSauce | async)?.addedCount > 0" class="btn btn-primary"
-								type="button">
-							<i class="bi bi-plus"></i>
-						</button>
-						<button (click)="onClickRemoveSauce()"
-								[disabled]="(selectedSauce | async)?.name !== sauce.name"
-								class="btn btn-secondary" type="button">
-							<i class="bi bi-dash"></i>
-						</button>
+									type="button">
+								<i class="bi bi-plus"></i>
+							</button>
+							<button (click)="onClickRemoveSauce()"
+									[disabled]="(selectedSauce | async)?.name !== sauce.name"
+									class="btn btn-secondary" type="button">
+								<i class="bi bi-dash"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<p class="lead">Toppings</p>
-	<div class="row row-cols-1 row-cols-md-2 g-4">
-		<div *ngFor="let topping of toppings; index as i;" class="col">
-			<div class="card h-100">
-				<img [src]="topping.image" class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">{{topping.name}}</h5>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center">
-						<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
-							<i class="bi bi-plus"></i>
-						</button>
-						<button (click)="onClickRemoveTopping(topping)" class="btn btn-secondary"
-								type="button">
-							<i class="bi bi-dash"></i>
-						</button>
+	<div class="my-3">
+		<p class="lead">Toppings</p>
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			<div *ngFor="let topping of toppings; index as i;" class="col">
+				<div class="card h-100">
+					<img [src]="topping.image" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{topping.name}}</h5>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-center">
+							<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
+								<i class="bi bi-plus"></i>
+							</button>
+							<button (click)="onClickRemoveTopping(topping)" class="btn btn-secondary"
+									type="button">
+								<i class="bi bi-dash"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
