@@ -11,11 +11,11 @@ import { BehaviorSubject, Subscription } from "rxjs";
 })
 export class CustomCreatorComponent implements OnInit, OnDestroy {
 
-	selectedCrust = new BehaviorSubject<Crust | null>(null);
+	selectedCrust = new BehaviorSubject<Crust | any>(null);
 
-	selectedSauce = new BehaviorSubject<Sauce | null>(null);
+	selectedSauce = new BehaviorSubject<Sauce | any>(null);
 
-	selectedToppings = new BehaviorSubject<Topping[] | null>(null);
+	selectedToppings = new BehaviorSubject<Topping[] | any>(null);
 
 	crustSubscription: Subscription | undefined;
 	sauceSubscription: Subscription | undefined;

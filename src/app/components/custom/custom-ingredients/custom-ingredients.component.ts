@@ -33,11 +33,11 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 		{name: 'Sausage', image: '/assets/pepperoni.jpeg', addedCount: 0}
 	]
 
-	selectedCrust = new BehaviorSubject<Crust | null>(null);
+	selectedCrust = new BehaviorSubject<Crust | any>(null);
 
-	selectedSauce = new BehaviorSubject<Sauce | null>(null);
+	selectedSauce = new BehaviorSubject<Sauce | any>(null);
 
-	selectedToppings = new BehaviorSubject<Topping[] | null>(null);
+	selectedToppings = new BehaviorSubject<Topping[] | any>(null);
 
 	crustSubscription: Subscription | undefined;
 	sauceSubscription: Subscription | undefined;
@@ -87,7 +87,7 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 		this.customService.clearSauce();
 	}
 
-	onClickRemoveTopping(index: number) {
-		this.customService.deleteToppings(index);
+	onClickRemoveTopping(topping: Topping) {
+		this.customService.deleteToppings(topping);
 	}
 }

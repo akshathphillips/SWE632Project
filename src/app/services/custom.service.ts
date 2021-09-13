@@ -73,10 +73,10 @@ export class CustomService {
 		this.toppingsChanged.next(this.toppings.slice());
 	}
 
-	deleteToppings(index: number) {
+	deleteToppings(topping: Topping) {
 		if (this.toppings && this.toppings.length) {
-			let topping = this.toppings[index];
-			if (topping) {
+			const index = this.toppings.indexOf(topping);
+			if (index >= 0) {
 				if (topping.addedCount > 1) {
 					topping.addedCount -= 1;
 				} else {
