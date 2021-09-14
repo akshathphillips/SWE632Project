@@ -1,17 +1,26 @@
 <div class="container-fluid">
 	<div class="d-flex justify-content-between">
 		<h1 class="display-6">Cart</h1>
-		<h1 *ngIf="(selectedPizzas | async)" class="display-6">
-			<div class="d-flex justify-content-evenly align-items-start">
-				<div class="mx-4">${{12.99 * (selectedPizzas | async).length}}</div>
-				<button class="btn btn-primary align-self-center">Place Order</button>
-			</div>
-		</h1>
+		<button *ngIf="(selectedPizzas | async)?.length" class="btn btn-primary align-self-center">Place Order</button>
 	</div>
-	<div *ngIf="!(selectedPizzas | async)">
+	<div *ngIf="(selectedPizzas | async)?.length">
+		<div class="d-flex justify-content-center">
+			<h5>
+				Order total
+				<small class="text-muted">${{12.99 * (selectedPizzas | async).length}}</small>
+			</h5>
+		</div>
+		<div class="d-flex justify-content-center align-items-start">
+			<h5>
+				Creation time
+				<small class="text-muted">~20 mins</small>
+			</h5>
+		</div>
+	</div>
+	<div *ngIf="!(selectedPizzas | async)?.length">
 		<p class="lead">Cart is empty</p>
 	</div>
-	<div *ngIf="(selectedPizzas | async)" class="row">
+	<div *ngIf="(selectedPizzas | async)?.length" class="row">
 		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
 			<div class="card w-100">
 				<div class="card-body">
@@ -50,7 +59,7 @@
 						</ul>
 					</div>
 					<div class="d-flex justify-content-end mt-3">
-						<button class="btn btn-danger">Remove</button>
+						<button (click)="onClickRemovePizza(i)" class="btn btn-danger">Remove</button>
 					</div>
 				</div>
 			</div>

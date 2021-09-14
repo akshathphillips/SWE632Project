@@ -28,4 +28,7 @@ export class CartComponent implements OnInit, OnDestroy {
 		this.pizzasSubscription?.unsubscribe();
 	}
 
+	onClickRemovePizza(index: number) {
+		this.cartService.deletePizza(index);
+	}
 }
