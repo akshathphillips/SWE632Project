@@ -1,6 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	OnDestroy,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation
+} from '@angular/core';
 import { Crust, CustomService, Sauce, Topping } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
+import { Toast } from "bootstrap";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'app-custom-creator',
@@ -9,7 +20,13 @@ import { BehaviorSubject, Subscription } from "rxjs";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomCreatorComponent implements OnInit, OnDestroy {
+export class CustomCreatorComponent implements OnInit, OnDestroy, AfterViewInit {
+
+	@ViewChild('errorToast', {static: true}) errorToastElement: ElementRef | any;
+	@ViewChild('successToast', {static: true}) successToastElement: ElementRef | any;
+
+	errorToast: Toast | any;
+	successToast: Toast | any;
 
 	selectedCrust = new BehaviorSubject<Crust | any>(null);
 
@@ -21,7 +38,7 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 	sauceSubscription: Subscription | undefined;
 	toppingsSubscription: Subscription | undefined;
 
-	constructor(private customService: CustomService) {
+	constructor(private customService: CustomService, private router: Router) {
 	}
 
 	ngOnInit(): void {
@@ -39,13 +56,26 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 	}
 
 	onClickAddToCart() {
-		this.customService.addToCart();
+		if (!this.selectedCrust.value || !this.selectedSauce.value || !this.selectedToppings.value?.length) {
+			this.errorToast.show();
+		} else {
+			this.successToast.show();
+			this.customService.addToCart();
+			setTimeout(() => {
+				this.router.navigate(['/']);
+			}, 1500)
+		}
 	}
 
 	ngOnDestroy(): void {
 		this.crustSubscription?.unsubscribe();
 		this.sauceSubscription?.unsubscribe();
 		this.toppingsSubscription?.unsubscribe();
+	}
+
+	ngAfterViewInit(): void {
+		this.errorToast = new Toast(this.errorToastElement.nativeElement);
+		this.successToast = new Toast(this.successToastElement.nativeElement);
 	}
 
 }

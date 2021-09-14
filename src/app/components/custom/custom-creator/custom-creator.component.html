@@ -1,9 +1,26 @@
-<div *ngIf="(selectedCrust | async) || (selectedSauce | async) || (selectedToppings | async)"
-	 class="container-fluid sticky-top my-5">
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-		<button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+	<div #errorToast aria-atomic="true" aria-live="assertive"
+		 class="toast align-items-center text-white bg-danger border-0" role="alert">
+		<div class="d-flex">
+			<div class="toast-body">
+				Error! Pizza options missing.
+			</div>
+		</div>
 	</div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 12">
+	<div #successToast aria-atomic="true" aria-live="assertive"
+		 class="toast align-items-center text-white bg-success border-0" role="alert">
+		<div class="d-flex">
+			<div class="toast-body">
+				Success! Added custom pizza to cart.
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="(selectedCrust | async) || (selectedSauce | async) || (selectedToppings | async)"
+	 class="container-fluid sticky-top my-5" style="top: 50px">
 	<div class="card text-center">
 		<div class="card-header">
 			Your Pizza
@@ -31,7 +48,7 @@
 						class="list-group-item d-flex justify-content-between align-items-start">
 						<div class="ms-2 me-auto">
 							<div class="fw-bold">{{topping.name}}</div>
-							Topping
+							<div class="justify-content-start">Topping</div>
 						</div>
 						<span class="badge bg-primary rounded-pill">{{topping.addedCount}}</span>
 					</li>
@@ -39,7 +56,7 @@
 			</div>
 		</div>
 		<div class="card-footer text-muted">
-			<a (click)="onClickAddToCart()" class="btn btn-primary" routerLink="/home">
+			<a (click)="onClickAddToCart()" class="btn btn-primary">
 				Add to Cart
 			</a>
 		</div>

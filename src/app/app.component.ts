@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { StorageService } from "./shared/storage.service";
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { CartService, Pizza } from "./services";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-root',
@@ -7,21 +8,24 @@ import { StorageService } from "./shared/storage.service";
 	styleUrls: ['./app.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 	title = 'SWE632Project';
 
+	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
 
-	constructor(private storageService: StorageService) {
+	pizzasSubscription: Subscription | undefined;
+
+	constructor(private cartService: CartService) {
 	}
 
-	onClickStore() {
-		this.storageService.store();
-	}
-
-	onClickFetch() {
-		this.storageService.fetch();
-	}
 
 	ngOnInit(): void {
+		this.pizzasSubscription = this.cartService.pizzasChanged.subscribe((v) => {
+			this.selectedPizzas.next(v)
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.pizzasSubscription?.unsubscribe();
 	}
 }
