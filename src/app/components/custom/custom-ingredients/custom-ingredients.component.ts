@@ -25,12 +25,12 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 	]
 
 	readonly toppings: Topping[] = [
-		{name: 'Mushrooms', image: '/assets/pepperoni.jpeg', addedCount: 0},
-		{name: 'Peppers', image: '/assets/pepperoni.jpeg', addedCount: 0},
-		{name: 'Olives', image: '/assets/pepperoni.jpeg', addedCount: 0},
+		{name: 'Mushrooms', image: '/assets/mushrooms.jpg', addedCount: 0},
+		{name: 'Peppers', image: '/assets/Peppers.jpg', addedCount: 0},
+		{name: 'Olives', image: '/assets/Olives.jpg', addedCount: 0},
 		{name: 'Pepperoni', image: '/assets/pepperoni.jpeg', addedCount: 0},
-		{name: 'Chicken', image: '/assets/pepperoni.jpeg', addedCount: 0},
-		{name: 'Sausage', image: '/assets/pepperoni.jpeg', addedCount: 0}
+		{name: 'Chicken', image: '/assets/Chicken.jpg', addedCount: 0},
+		{name: 'Sausage', image: '/assets/Sausage.jpg', addedCount: 0}
 	]
 
 	selectedCrust = new BehaviorSubject<Crust | any>(null);
