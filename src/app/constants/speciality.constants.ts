@@ -112,8 +112,63 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		}
 	},
 	{
-		name: 'Classic Spinach and Tomatoes',
-		image: '/assets/Spinach and Tomatoes.jpg',
+		name: 'Classic Chicken',
+		image: '/assets/Chicken pizza.jpg',
+		description: '',
+		pizza: {
+			time: 5,
+			crust: {
+				name: 'Classic',
+				image: '/assets/classic-crust.jpeg',
+				addedCount: 1
+			},
+			sauce: {
+				name: 'Tomato',
+				image: '/assets/classic-sauce.jpeg',
+				addedCount: 1
+			},
+			toppings: [
+				{
+					name: 'Chicken',
+					image: 'TODO',
+					addedCount: 1
+				}
+			]
+		}
+	},
+	{
+		name: 'zucchini and onion pizza',
+		image: '/assets/zucchini and onion pizza.jpg',
+		description: '',
+		pizza: {
+			time: 5,
+			crust: {
+				name: 'Classic',
+				image: '/assets/classic-crust.jpeg',
+				addedCount: 1
+			},
+			sauce: {
+				name: 'Tomato',
+				image: '/assets/classic-sauce.jpeg',
+				addedCount: 1
+			},
+			toppings: [
+				{
+					name: 'Spinach',
+					image: 'TODO',
+					addedCount: 1
+				},
+				{
+					name: 'Tomatoes',
+					image: 'TODO',
+					addedCount: 1
+				}
+			]
+		}
+	},
+	{
+		name: 'pepper and onion pizza',
+		image: '/assets/pepper and onion.jpg',
 		description: '',
 		pizza: {
 			time: 5,
