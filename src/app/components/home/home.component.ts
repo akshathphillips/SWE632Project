@@ -1,6 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation
+} from '@angular/core';
 import { SpecialityMenu } from "../../constants";
 import { CartService, Pizza } from "../../services";
+import { Toast } from "bootstrap";
 
 @Component({
 	selector: 'app-home-component',
@@ -9,7 +18,11 @@ import { CartService, Pizza } from "../../services";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+
+	@ViewChild('homeToast', {static: true}) homeToastElement: ElementRef | any;
+
+	toast: Toast | any;
 
 	readonly specialities: {
 		name: string,
@@ -17,6 +30,8 @@ export class HomeComponent implements OnInit {
 		description: string,
 		pizza: Pizza
 	} [] = SpecialityMenu
+
+	showMe = false;
 
 	constructor(private cartService: CartService) {
 	}
@@ -26,6 +41,11 @@ export class HomeComponent implements OnInit {
 
 	onClickAddToCart(pizza: Pizza) {
 		this.cartService.addPizza(pizza);
-		// TODO Add toast
+		this.toast.show();
 	}
+
+	ngAfterViewInit(): void {
+		this.toast = new Toast(this.homeToastElement.nativeElement);
+	}
+
 }
