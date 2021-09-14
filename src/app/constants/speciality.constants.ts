@@ -88,7 +88,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 	},
 	{
 		name: 'Classic Chicken',
-		image: '/assets/Chicken pizza.jpg',
+		image: '/assets/pizza-chicken.jpeg',
 		description: '',
 		pizza: {
 			time: 5,
