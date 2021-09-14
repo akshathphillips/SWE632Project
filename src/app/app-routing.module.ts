@@ -5,6 +5,7 @@ import {
 	CustomComponent,
 	HomeComponent,
 	MenuComponent,
+	OrderConfirmationComponent,
 	OrderSuccessComponent,
 	PageNotFoundComponent
 } from "./components";
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{path: 'menu', component: MenuComponent},
 	{path: 'custom', component: CustomComponent},
 	{path: 'cart', component: CartComponent},
+	{path: 'order-confirmation', component: OrderConfirmationComponent},
 	{path: 'order-success', component: OrderSuccessComponent},
 	{path: '', redirectTo: '/home', pathMatch: 'full'}, // redirect to `home`
 	{path: '**', component: PageNotFoundComponent},  // Wildcard route for a 404 page

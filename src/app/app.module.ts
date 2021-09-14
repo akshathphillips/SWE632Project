@@ -11,6 +11,7 @@ import {
 	CustomIngredientsComponent,
 	HomeComponent,
 	MenuComponent,
+	OrderConfirmationComponent,
 	OrderSuccessComponent,
 	PageNotFoundComponent
 } from './components';
@@ -25,7 +26,8 @@ import {
 		CustomIngredientsComponent,
 		CustomCreatorComponent,
 		CartComponent,
-		OrderSuccessComponent
+		OrderSuccessComponent,
+		OrderConfirmationComponent
 	],
 	imports: [
 		BrowserModule,

@@ -4,3 +4,4 @@ export * from './page-not-found';
 export * from './custom';
 export * from './cart';
 export * from './order-success';
+export * from './order-confirmation';
