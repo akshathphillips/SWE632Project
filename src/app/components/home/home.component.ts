@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { SpecialityMenu } from "../../constants/speciality.constants";
+import { SpecialityMenu } from "../../constants";
+import { CartService, Pizza } from "../../services";
 
 @Component({
 	selector: 'app-home-component',
@@ -10,12 +11,21 @@ import { SpecialityMenu } from "../../constants/speciality.constants";
 })
 export class HomeComponent implements OnInit {
 
-	readonly specialities: { name: string, image: string, description: string, time: string } [] = SpecialityMenu
+	readonly specialities: {
+		name: string,
+		image: string,
+		description: string,
+		pizza: Pizza
+	} [] = SpecialityMenu
 
-	constructor() {
+	constructor(private cartService: CartService) {
 	}
 
 	ngOnInit(): void {
 	}
 
+	onClickAddToCart(pizza: Pizza) {
+		this.cartService.addPizza(pizza);
+		// TODO Add toast
+	}
 }

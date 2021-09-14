@@ -6,13 +6,13 @@
 			<a class="btn btn-primary my-2 mx-2" href="#" routerLink="/custom" routerLinkActive="active">
 				Create your own pizza
 			</a>
-			<a class="btn btn-secondary my-2 mx-2" href="#">Choose from speciality pizzas</a>
 		</p>
 	</div>
 </section>
 
 <div class="album py-5 bg-light">
 	<div class="container-fluid">
+		<h1 class="display-6">Speciality Pizzas</h1>
 		<div class="row">
 			<div *ngFor="let speciality of specialities; index as i;" class="col-md-4">
 				<div class="card mb-4 box-shadow">
@@ -22,10 +22,12 @@
 						<p class="card-text">{{speciality.name}}</p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<button class="btn btn-sm btn-outline-secondary" type="button">Edit</button>
-								<button class="btn btn-sm btn-outline-secondary" type="button">Add to cart</button>
+								<button (click)="onClickAddToCart(speciality.pizza)"
+										class="btn btn-sm btn-outline-secondary"
+										type="button">Add to cart
+								</button>
 							</div>
-							<small class="text-muted">Creation time: {{speciality.time}}</small>
+							<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
 						</div>
 					</div>
 				</div>

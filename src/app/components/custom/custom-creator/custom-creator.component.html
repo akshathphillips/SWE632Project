@@ -1,5 +1,9 @@
 <div *ngIf="(selectedCrust | async) || (selectedSauce | async) || (selectedToppings | async)"
 	 class="container-fluid sticky-top my-5">
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Holy guacamole!</strong> You should check in on some of those fields below.
+		<button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+	</div>
 	<div class="card text-center">
 		<div class="card-header">
 			Your Pizza
@@ -32,11 +36,10 @@
 						<span class="badge bg-primary rounded-pill">{{topping.addedCount}}</span>
 					</li>
 				</ul>
-
 			</div>
 		</div>
 		<div class="card-footer text-muted">
-			<a (click)="onClickAddToCart()" class="btn btn-primary">
+			<a (click)="onClickAddToCart()" class="btn btn-primary" routerLink="/home">
 				Add to Cart
 			</a>
 		</div>

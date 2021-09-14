@@ -6,6 +6,7 @@ export interface Pizza {
 	crust: Crust;
 	sauce: Sauce;
 	toppings: Topping[];
+	time: number;
 }
 
 @Injectable({
@@ -30,6 +31,8 @@ export class CartService {
 	addPizza(pizza: Pizza) {
 		if (!this.pizzas)
 			this.pizzas = [];
+
+		console.log(JSON.stringify(pizza));
 
 		this.pizzas.push(pizza);
 		this.pizzasChanged.next(this.pizzas.slice());

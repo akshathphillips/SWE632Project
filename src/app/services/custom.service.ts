@@ -101,9 +101,7 @@ export class CustomService {
 
 	addToCart() {
 		if (this.crust && this.sauce && this.toppings && this.toppings.length) {
-			this.cartService.addPizza({crust: this.crust, sauce: this.sauce, toppings: this.toppings})
-		} else {
-
+			this.cartService.addPizza({time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings})
 		}
 	}
 }

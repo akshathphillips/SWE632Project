@@ -1,1 +1,59 @@
-<p>cart works!</p>
+<div class="container-fluid">
+	<div class="d-flex justify-content-between">
+		<h1 class="display-6">Cart</h1>
+		<h1 *ngIf="(selectedPizzas | async)" class="display-6">
+			<div class="d-flex justify-content-evenly align-items-start">
+				<div class="mx-4">${{12.99 * (selectedPizzas | async).length}}</div>
+				<button class="btn btn-primary align-self-center">Place Order</button>
+			</div>
+		</h1>
+	</div>
+	<div *ngIf="!(selectedPizzas | async)">
+		<p class="lead">Cart is empty</p>
+	</div>
+	<div *ngIf="(selectedPizzas | async)" class="row">
+		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
+			<div class="card w-100">
+				<div class="card-body">
+					<h5 class="card-title">
+						<div class="d-flex justify-content-between">
+							<p>Pizza - {{i + 1}}</p>
+							<p>$12.99</p>
+						</div>
+					</h5>
+					<div class="card-text">
+						<ul class="list-group card">
+							<li class="list-group-item d-flex justify-content-between align-items-start">
+								<div class="ms-2 me-auto">
+									<div class="fw-bold">{{pizza.crust.name}}</div>
+									Crust
+								</div>
+								<span
+									class="badge bg-primary rounded-pill">{{pizza.crust.addedCount}}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-start">
+								<div class="ms-2 me-auto">
+									<div class="fw-bold">{{pizza.sauce.name}}</div>
+									Sauce
+								</div>
+								<span
+									class="badge bg-primary rounded-pill">{{pizza.sauce.addedCount}}</span>
+							</li>
+							<li *ngFor="let topping of pizza.toppings; index as i;"
+								class="list-group-item d-flex justify-content-between align-items-start">
+								<div class="ms-2 me-auto">
+									<div class="fw-bold">{{topping.name}}</div>
+									Topping
+								</div>
+								<span class="badge bg-primary rounded-pill">{{topping.addedCount}}</span>
+							</li>
+						</ul>
+					</div>
+					<div class="d-flex justify-content-end mt-3">
+						<button class="btn btn-danger">Remove</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
