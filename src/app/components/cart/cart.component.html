@@ -1,7 +1,10 @@
 <div class="container-fluid">
 	<div class="d-flex justify-content-between">
 		<h1 class="display-6">Cart</h1>
-		<button *ngIf="(selectedPizzas | async)?.length" class="btn btn-primary align-self-center">Place Order</button>
+		<button *ngIf="(selectedPizzas | async)?.length"
+				class="btn btn-primary align-self-center"
+				routerLink="/order-success">Place Order
+		</button>
 	</div>
 	<div *ngIf="(selectedPizzas | async)?.length">
 		<div class="d-flex justify-content-center">

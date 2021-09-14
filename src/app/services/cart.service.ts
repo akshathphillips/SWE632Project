@@ -32,8 +32,6 @@ export class CartService {
 		if (!this.pizzas)
 			this.pizzas = [];
 
-		console.log(JSON.stringify(pizza));
-
 		this.pizzas.push(pizza);
 		this.pizzasChanged.next(this.pizzas.slice());
 	}
@@ -43,5 +41,10 @@ export class CartService {
 			this.pizzas.splice(index, 1);
 			this.pizzasChanged.next(this.pizzas.slice());
 		}
+	}
+
+	clear() {
+		this.pizzas = [];
+		this.pizzasChanged.next(this.pizzas.slice());
 	}
 }
