@@ -9,18 +9,18 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 			time: 5,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			toppings: [
 				{
 					name: 'Pepperoni',
-					image: '/assets/pepperoni.jpeg',
+					image: '',
 					addedCount: 1
 				}
 			]
@@ -34,23 +34,23 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 			time: 9,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 2
 			},
 			toppings: [
 				{
 					name: 'Cheese',
-					image: 'TODO',
+					image: '',
 					addedCount: 2
 				},
 				{
 					name: 'Basil',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				}
 			]
@@ -64,23 +64,23 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 			time: 5,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			toppings: [
 				{
 					name: 'Mushrooms',
-					image: '/assets/pepperoni.jpeg',
+					image: '',
 					addedCount: 1
 				},
 				{
 					name: 'Cheese',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				}
 			]
@@ -94,48 +94,48 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 			time: 5,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			toppings: [
 				{
 					name: 'Chicken',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				}
 			]
 		}
 	},
 	{
-		name: 'Classic Spinach and Tomatoes',
-		image: '/assets/Spinach and Tomatoes.jpg',
+		name: 'Mushrooms and Peppers',
+		image: '/assets/pizza-mushrooms-and-peppers.jpeg',
 		description: '',
 		pizza: {
 			time: 5,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			toppings: [
 				{
-					name: 'Spinach',
-					image: 'TODO',
+					name: 'Mushrooms',
+					image: '',
 					addedCount: 1
 				},
 				{
-					name: 'Tomatoes',
-					image: 'TODO',
+					name: 'Peppers',
+					image: '',
 					addedCount: 1
 				}
 			]
@@ -143,40 +143,65 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 	},
 	{
 		name: 'Garden fresh veggie',
-		image: '/assets/Garden fresh veggie pizza.jpg',
+		image: '/assets/pizza-garden-fresh.jpeg',
 		description: '',
 		pizza: {
 			time: 5,
 			crust: {
 				name: 'Classic',
-				image: '/assets/classic-crust.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			sauce: {
 				name: 'Tomato',
-				image: '/assets/classic-sauce.jpeg',
+				image: '',
 				addedCount: 1
 			},
 			toppings: [
 				{
 					name: 'Tomatoes',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				},
 				{
 					name: 'Peppers',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				},
 				{
 					name: 'Onions',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
 				},
 				{
 					name: 'Olives',
-					image: 'TODO',
+					image: '',
 					addedCount: 1
+				}
+			]
+		}
+	},
+	{
+		name: 'Mozzarella',
+		image: '/assets/pizza-mozzarella.jpeg',
+		description: '',
+		pizza: {
+			time: 5,
+			crust: {
+				name: 'Classic',
+				image: '',
+				addedCount: 1
+			},
+			sauce: {
+				name: 'Tomato',
+				image: '',
+				addedCount: 1
+			},
+			toppings: [
+				{
+					name: 'Mozzarella',
+					image: '',
+					addedCount: 3
 				}
 			]
 		}
