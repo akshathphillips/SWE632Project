@@ -21,7 +21,9 @@
 		</div>
 	</div>
 	<div *ngIf="!(selectedPizzas | async)?.length">
-		<p class="lead">Cart is empty</p>
+		<div class="d-flex justify-content-center">
+			<p class="lead">Cart is empty</p>
+		</div>
 	</div>
 	<div *ngIf="(selectedPizzas | async)?.length" class="row">
 		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
