@@ -13,15 +13,15 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 
 	readonly crusts: Crust[] = [
 		{name: 'Classic', image: '/assets/classic-crust.jpeg', addedCount: 0},
-		{name: 'Thin', image: '/assets/classic-crust.jpeg', addedCount: 0},
-		{name: 'Thick', image: '/assets/classic-crust.jpeg', addedCount: 0},
-		{name: 'Gluten Free', image: '/assets/classic-crust.jpeg', addedCount: 0},
-		{name: 'Cauliflower', image: '/assets/classic-crust.jpeg', addedCount: 0},
+		{name: 'Thin', image: '/assets/Thin crust.jpg', addedCount: 0},
+		{name: 'Thick', image: '/assets/Thick Crust.jpg', addedCount: 0},
+		{name: 'Gluten Free', image: '/assets/Gluten free.jpg', addedCount: 0},
+		{name: 'Cauliflower', image: '/assets/Cauliflower crust.jpg', addedCount: 0},
 	]
 
 	readonly sauces: Sauce[] = [
 		{name: 'Tomato', image: '/assets/classic-sauce.jpeg', addedCount: 0},
-		{name: 'White', image: '/assets/classic-sauce.jpeg', addedCount: 0},
+		{name: 'White', image: '/assets/White sauce.jpg', addedCount: 0},
 	]
 
 	readonly toppings: Topping[] = [
@@ -30,7 +30,20 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 		{name: 'Olives', image: '/assets/olives.jpeg', addedCount: 0},
 		{name: 'Pepperoni', image: '/assets/pepperoni.jpeg', addedCount: 0},
 		{name: 'Chicken', image: '/assets/chicken.jpeg', addedCount: 0},
-		{name: 'Sausage', image: '/assets/sausage.jpeg', addedCount: 0}
+		{name: 'Sausage', image: '/assets/sausage.jpeg', addedCount: 0},
+		{name: 'Corns', image: '/assets/corns.jpg', addedCount: 0},
+		{name: 'Zucchini', image: '/assets/zucchini.jpg', addedCount: 0},
+		{name: 'Spinach', image: '/assets/Spinach.jpg', addedCount: 0},
+		{name: 'Pineapple', image: '/assets/pineapple.jpg', addedCount: 0},
+		{name: 'Bacon', image: '/assets/bacon.jpg', addedCount: 0},
+		{name: 'Meatball', image: '/assets/meatball.jpg', addedCount: 0},
+		{name: 'Black Olives', image: '/assets/BO.jpg', addedCount: 0},
+		{name: 'Jalapeño', image: '/assets/Jalapeno.jpg', addedCount: 0},
+		{name: 'Eggplant', image: '/assets/Eggplant.jpg', addedCount: 0},
+		{name: 'Salami', image: '/assets/Salami.jpg', addedCount: 0},
+
+
+
 	]
 
 	selectedCrust = new BehaviorSubject<Crust | any>(null);
