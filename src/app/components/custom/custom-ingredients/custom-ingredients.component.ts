@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	OnDestroy,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation
+} from '@angular/core';
 import { Crust, CustomService, Sauce, Topping } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
+import { Toast } from "bootstrap";
 
 @Component({
 	selector: 'app-custom-ingredients',
@@ -9,7 +19,9 @@ import { BehaviorSubject, Subscription } from "rxjs";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomIngredientsComponent implements OnInit, OnDestroy {
+export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewInit {
+
+	@ViewChild('manyToppingToast', {static: true}) manyToppingToastElement: ElementRef | any;
 
 	readonly crusts: Crust[] = [
 		{name: 'Classic', image: '/assets/classic-crust.jpeg', addedCount: 0},
@@ -43,8 +55,8 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 		{name: 'Salami', image: '/assets/Salami.jpg', addedCount: 0},
 
 
-
 	]
+	manyToppingToast: Toast | any;
 
 	selectedCrust = new BehaviorSubject<Crust | any>(null);
 
@@ -89,7 +101,12 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 	}
 
 	onClickAddTopping(topping: Topping) {
-		this.customService.addToppings(topping);
+		const currentSize = topping.addedCount + 1;
+		if (currentSize > 2) {
+			this.manyToppingToast.show();
+		} else {
+			this.customService.addToppings(topping);
+		}
 	}
 
 	onClickRemoveCrust() {
@@ -102,5 +119,9 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy {
 
 	onClickRemoveTopping(topping: Topping) {
 		this.customService.deleteToppings(topping);
+	}
+
+	ngAfterViewInit(): void {
+		this.manyToppingToast = new Toast(this.manyToppingToastElement.nativeElement);
 	}
 }
