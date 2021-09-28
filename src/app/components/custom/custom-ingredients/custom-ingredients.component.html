@@ -12,7 +12,7 @@
 	<h1 class="display-6">Create your own pizza</h1>
 	<div class="my-3">
 		<p class="lead">Crust</p>
-		<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div class="row row-cols-md-3 g-2">
 				<div *ngFor="let crust of crusts; index as i;" class="btn-group-vertical" role="group">
 					<input type="radio" class="btn-check" name="btnradio_crust" id="btnradio_crust{{i}}" autocomplete="off" 
 					(click)="onClickAddCrust(crust)" 
@@ -25,10 +25,9 @@
 				</div>
 		</div>
 	</div>
-
 	<div class="my-3">
 		<p class="lead">Sauces</p>
-		<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div class="row row-cols-md-2 g-2">
 			<div *ngFor="let sauce of sauces; index as i;" class="btn-group-vertical" role="group">
 				<input type="radio" class="btn-check" 
 				name="btnradio_sauce" 
@@ -43,10 +42,9 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="my-3">
 		<p class="lead">Toppings</p>
-		<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div class="row row-cols-1 row-cols-md-3 g-2">
 
 			<!-- <div *ngFor="let topping of toppings; index as i;" class="btn-group-vertical" role="group">
 				<input type="checkbox" class="btn-check" 
@@ -64,17 +62,21 @@
 				<div class="card h-100">
 					<img [src]="topping.image" class="card-img-top ingredient-image">
 					<div class="card-body">
-						<h5 class="card-title">{{topping.name}}</h5>
-					</div>
-					<div class="card-footer">
-						<div class="d-flex justify-content-center">
-							<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
-								<i class="bi bi-plus"></i>
-							</button>
-							<button (click)="onClickRemoveTopping(topping)" class="btn btn-secondary"
-									type="button">
-								<i class="bi bi-dash"></i>
-							</button>
+						<div class="row">
+							<div class="col">
+								<h5 class="card-title">{{topping.name}}</h5>
+							</div>
+							<div class="col">
+								<div class="justify-content-end">
+									<button (click)="onClickAddTopping(topping)" class="btn btn-primary" type="button">
+										<i class="bi bi-plus"></i>
+									</button>
+									<button (click)="onClickRemoveTopping(topping)" class="btn btn-secondary"
+											type="button">
+										<i class="bi bi-dash"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
