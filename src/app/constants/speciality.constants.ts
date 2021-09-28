@@ -6,6 +6,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-pepperoni.jpg',
 		description: '',
 		pizza: {
+			name: 'Classic Pepperoni',
 			time: 5,
 			crust: {
 				name: 'Classic',
@@ -31,6 +32,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-margherita.jpg',
 		description: '',
 		pizza: {
+			name: 'Margherita',
 			time: 9,
 			crust: {
 				name: 'Classic',
@@ -61,6 +63,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-mushroom.jpg',
 		description: '',
 		pizza: {
+			name: 'Classic Cheese and Mushrooms',
 			time: 5,
 			crust: {
 				name: 'Classic',
@@ -91,6 +94,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-chicken.jpeg',
 		description: '',
 		pizza: {
+			name: 'Classic Chicken',
 			time: 5,
 			crust: {
 				name: 'Classic',
@@ -116,6 +120,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-mushrooms-and-peppers.jpeg',
 		description: '',
 		pizza: {
+			name: 'Mushrooms and Peppers',
 			time: 5,
 			crust: {
 				name: 'Classic',
@@ -146,6 +151,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-garden-fresh.jpeg',
 		description: '',
 		pizza: {
+			name: 'Garden fresh veggie',
 			time: 5,
 			crust: {
 				name: 'Classic',
@@ -186,6 +192,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 		image: '/assets/pizza-mozzarella.jpeg',
 		description: '',
 		pizza: {
+			name: 'Mozzarella',
 			time: 5,
 			crust: {
 				name: 'Classic',

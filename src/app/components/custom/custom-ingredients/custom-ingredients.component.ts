@@ -83,6 +83,10 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 		this.toppingsSubscription = this.customService.toppingsChanged.subscribe((v) => {
 			this.selectedToppings.next(v)
 		});
+
+		// Set default crust to Classic and default sauce to tomato (The UI prevents the user from causing an error)
+		this.onClickAddCrust(this.crusts[0]);
+		this.onClickAddSauce(this.sauces[0]);
 	}
 
 	ngOnDestroy(): void {
@@ -98,6 +102,10 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	onClickAddSauce(sauce: Sauce) {
 		this.customService.addSauce(sauce);
+	}
+
+	isToppingAdded(topping: Topping) {
+		this.customService.isToppingAdded(topping);
 	}
 
 	onClickAddTopping(topping: Topping) {

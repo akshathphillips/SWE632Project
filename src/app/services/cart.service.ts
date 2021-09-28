@@ -7,6 +7,7 @@ export interface Pizza {
 	sauce: Sauce;
 	toppings: Topping[];
 	time: number;
+	name : String;
 }
 
 @Injectable({

@@ -26,7 +26,7 @@
 		<div class="d-flex justify-content-center align-items-start">
 			<h5>
 				Creation time
-				<small class="text-muted">~20 mins</small>
+				<small class="text-muted">~{{5 * (selectedPizzas | async).length}} mins</small>
 			</h5>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 				<div class="card-body">
 					<h5 class="card-title">
 						<div class="d-flex justify-content-between">
-							<p>Pizza - {{i + 1}}</p>
+							<p>{{pizza.name}}</p>
 							<p>$12.99</p>
 						</div>
 					</h5>

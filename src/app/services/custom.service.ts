@@ -32,6 +32,7 @@ export class CustomService {
 	private crust: Crust | null = null;
 	private sauce: Sauce | null = null;
 	private toppings: Topping[] | null = null;
+	private name : string = "Custom Creation";
 
 	constructor(private cartService: CartService) {
 	}
@@ -58,6 +59,12 @@ export class CustomService {
 	clearSauce() {
 		this.sauce = null;
 		this.sauceChanged.next(this.sauce);
+	}
+
+	isToppingAdded(topping: Topping) {
+		if (!this.toppings)
+			this.toppings = [];
+		return this.toppings.includes(topping);
 	}
 
 	addToppings(topping: Topping) {
@@ -101,7 +108,7 @@ export class CustomService {
 
 	addToCart() {
 		if (this.crust && this.sauce && this.toppings && this.toppings.length) {
-			this.cartService.addPizza({time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings})
+			this.cartService.addPizza({name: this.name, time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings})
 		}
 	}
 }
