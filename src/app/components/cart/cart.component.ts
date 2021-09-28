@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	OnDestroy,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation
+} from '@angular/core';
 import { CartService, Pizza } from "../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
+import { Toast } from "bootstrap";
 
 @Component({
 	selector: 'app-cart',
@@ -9,11 +19,14 @@ import { BehaviorSubject, Subscription } from "rxjs";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
+	@ViewChild('orderRemoveToast', {static: true}) orderRemoveElement: ElementRef | any;
 
 	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
 
 	pizzasSubscription: Subscription | undefined;
+
+	orderRemoveToast: Toast | any;
 
 	constructor(private cartService: CartService) {
 	}
@@ -30,5 +43,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	onClickRemovePizza(index: number) {
 		this.cartService.deletePizza(index);
+		this.orderRemoveToast.show();
+	}
+
+	ngAfterViewInit(): void {
+		this.orderRemoveToast = new Toast(this.orderRemoveElement.nativeElement);
 	}
 }
