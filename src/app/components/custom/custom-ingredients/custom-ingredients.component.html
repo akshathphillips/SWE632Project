@@ -44,7 +44,7 @@
 	</div>
 	<div class="my-3">
 		<h1>3. Choose your Toppings</h1>
-		<h4>Vegetarian</h4>
+		<h3>Vegetarian</h3>
 		<div class="row">
 			<ng-container *ngFor="let topping of toppings; index as i;">
 				<div *ngIf="isVegetarian(topping.name)" class="card m-1 p-0" style="width: 16rem; height: 12rem;">
@@ -70,7 +70,7 @@
 				</div>
 			</ng-container>
 		</div>
-		<h4>Non Vegetarian</h4>
+		<h3 class="mt-5">Non Vegetarian</h3>
 		<div class="row">
 			<ng-container *ngFor="let topping of toppings; index as i;">
 				<div *ngIf="isNonVegetarian(topping.name)" class="card m-1 p-0" style="width: 16rem; height: 12rem;">
