@@ -22,6 +22,8 @@ import { Toast } from "bootstrap";
 export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 	@ViewChild('orderRemoveToast', {static: true}) orderRemoveElement: ElementRef | any;
 
+	collapsed: boolean[] = [];
+
 	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
 
 	pizzasSubscription: Subscription | undefined;
