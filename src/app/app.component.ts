@@ -18,11 +18,17 @@ export class AppComponent implements OnInit, OnDestroy {
 	constructor(private cartService: CartService) {
 	}
 
-
 	ngOnInit(): void {
 		this.pizzasSubscription = this.cartService.pizzasChanged.subscribe((v) => {
 			this.selectedPizzas.next(v)
 		});
+	}
+
+	getQuantity(selectedPizzas: BehaviorSubject<Pizza[] | any>) : number {
+		var arr = selectedPizzas.getValue()
+		var sum = 0;
+		arr.forEach((element: Pizza) => sum = sum + element["qty"]);
+		return sum;
 	}
 
 	ngOnDestroy(): void {

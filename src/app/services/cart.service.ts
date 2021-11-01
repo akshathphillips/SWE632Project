@@ -8,6 +8,7 @@ export interface Pizza {
 	toppings: Topping[];
 	time: number;
 	name : String;
+	qty: number; // Added quantity attribute to reduce number of cards in the cart page. 
 }
 
 @Injectable({
@@ -33,13 +34,28 @@ export class CartService {
 		if (!this.pizzas)
 			this.pizzas = [];
 
-		this.pizzas.push(pizza);
+		var updatedQty = false;
+		// Update qty if pizza exists in the array
+		this.pizzas.forEach((p) => {
+			if(JSON.stringify(p) === JSON.stringify(pizza)) {
+				p.qty = p.qty+1;
+				updatedQty = true;
+			}
+		});
+		if(!updatedQty) {
+			this.pizzas.push(pizza);
+		}
+		console.log(this.pizzas);
 		this.pizzasChanged.next(this.pizzas.slice());
 	}
 
+
 	deletePizza(index: number) {
 		if (this.pizzas && this.pizzas.length) {
-			this.pizzas.splice(index, 1);
+			//Decrement quantity if > 1, else remove from list if qty == 1
+			if(this.pizzas[index].qty > 1) 
+				this.pizzas[index].qty = this.pizzas[index].qty - 1
+			else this.pizzas.splice(index, 1);
 			this.pizzasChanged.next(this.pizzas.slice());
 		}
 	}

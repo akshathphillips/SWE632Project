@@ -13,6 +13,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -39,6 +40,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -70,6 +72,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -101,6 +104,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -127,6 +131,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -158,6 +163,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
@@ -199,6 +205,7 @@ export const SpecialityMenu: { name: string, image: string, description: string,
 				image: '',
 				addedCount: 1
 			},
+			qty: 1,
 			sauce: {
 				name: 'Tomato',
 				image: '',
