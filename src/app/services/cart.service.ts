@@ -35,6 +35,7 @@ export class CartService {
 			this.pizzas = [];
 
 		var updatedQty = false;
+
 		// Update qty if pizza exists in the array
 		this.pizzas.forEach((p) => {
 			if(JSON.stringify(p) === JSON.stringify(pizza)) {
@@ -45,7 +46,6 @@ export class CartService {
 		if(!updatedQty) {
 			this.pizzas.push(pizza);
 		}
-		console.log(this.pizzas);
 		this.pizzasChanged.next(this.pizzas.slice());
 	}
 
