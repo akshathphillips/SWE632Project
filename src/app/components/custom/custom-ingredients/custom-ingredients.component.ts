@@ -132,4 +132,13 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 	ngAfterViewInit(): void {
 		this.manyToppingToast = new Toast(this.manyToppingToastElement.nativeElement);
 	}
+
+	isVegetarian(topping: string): boolean {
+		if(['Mushrooms', 'Peppers','Olives','Corns','Zucchini','Spinach','Pineapple', 'Black Olives','Jalapeño', 'Eggplant'].includes(topping)) return true;
+		else return false;
+	}
+	isNonVegetarian(topping: string): boolean {
+		if(!['Mushrooms', 'Peppers','Olives','Corns','Zucchini','Spinach','Pineapple', 'Black Olives','Jalapeño', 'Eggplant'].includes(topping)) return true;
+		else return false;
+	}
 }

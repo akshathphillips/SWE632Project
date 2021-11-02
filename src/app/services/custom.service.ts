@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
-import { CartService } from "./cart.service";
+import { CartService, Pizza } from "./cart.service";
 
 export interface Crust {
 	name: string;
@@ -108,7 +108,8 @@ export class CustomService {
 
 	addToCart() {
 		if (this.crust && this.sauce && this.toppings && this.toppings.length) {
-			this.cartService.addPizza({name: this.name, time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings})
+			let pizza : Pizza = {name: this.name, time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings, qty: 1};
+			this.cartService.addPizza(pizza);
 		}
 	}
 }

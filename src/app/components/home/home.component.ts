@@ -39,6 +39,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 	}
 
+	isNonVegetarian(name: string): boolean {
+		if(['Classic Chicken', 'Classic Pepperoni'].includes(name)) return true;
+		else return false;
+	}
+
+	isVegetarian(name: string): boolean {
+		if(['Classic Cheese and Mushrooms', 'Mozzarella', 'Garden fresh veggie', 'Mushrooms and Peppers', 'Margherita'].includes(name)) return true;
+		else return false;
+	}
+
 	onClickAddToCart(pizza: Pizza) {
 		this.cartService.addPizza(pizza);
 		this.toast.show();

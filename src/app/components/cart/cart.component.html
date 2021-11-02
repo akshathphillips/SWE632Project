@@ -39,13 +39,24 @@
 		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
 			<div class="card w-100">
 				<div class="card-body">
-					<h5 class="card-title">
-						<div class="d-flex justify-content-between">
-							<p>{{pizza.name}}</p>
-							<p>$12.99</p>
+					<!-- Modified Card structure to make space for dropdown button -->
+					<h5 class="card-title row">
+						<div class="col">{{pizza.name}}</div>
+						<div class="col"> 
+							<img 	[attr.id]="'chevron-down-' + i" 
+									src="/assets/chevron-down.png" 
+									style="height: 30px; float: right;" 
+									(click)="collapsed[i] = true" 
+									[attr.hidden]="collapsed[i] == null || collapsed[i] != true ? null : 'true'">
+							<img 	[attr.id]="'chevron-up-' + i" 
+									src="/assets/chevron-up.png" 
+									style="height: 30px; float: right;" 
+									hidden (click)="collapsed[i] = false" 
+									[attr.hidden]="collapsed[i] == true ? null : 'true'">
 						</div>
 					</h5>
-					<div class="card-text">
+					<div class="card-text" *ngIf="collapsed[i] == true">
+						<p>$12.99</p>
 						<ul class="list-group card">
 							<li class="list-group-item d-flex justify-content-between align-items-start">
 								<div class="ms-2 me-auto">
@@ -73,7 +84,8 @@
 							</li>
 						</ul>
 					</div>
-					<div class="d-flex justify-content-end mt-3">
+					<div class="d-flex justify-content-between mt-3">
+						<div>Quantity : {{ pizza.qty }}</div>
 						<button (click)="onClickRemovePizza(i)" class="btn btn-danger">Remove</button>
 					</div>
 				</div>
