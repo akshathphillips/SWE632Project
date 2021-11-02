@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1022">
 		<div #manyToppingToast aria-atomic="true" aria-live="assertive"
 			 class="toast align-items-center text-white bg-warning border-0" role="alert">
 			<div class="d-flex">
@@ -9,34 +9,67 @@
 			</div>
 		</div>
 	</div>
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+		<div #selectedCrustToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+			<div *ngIf="(selectedCrust | async)" class="d-flex">
+				<div class="toast-body">
+					Pizza crust changed to {{(selectedCrust | async).name}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+		<div #selectedSauceToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+			<div *ngIf="(selectedSauce | async)" class="d-flex">
+				<div class="toast-body">
+					Pizza sauce changed to {{(selectedSauce | async).name}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+		<div #recentToppingToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0"
+			 role="alert">
+			<div *ngIf="(recentTopping | async)" class="d-flex">
+				<div class="toast-body">
+					Topping {{(recentTopping | async).name}} added! Your pizza now has quantity:
+					{{(recentTopping | async).addedCount}} of {{(recentTopping | async).name}}.
+				</div>
+			</div>
+		</div>
+	</div>
 	<h1 class="display-1">Create your own pizza</h1>
 	<div class="my-3">
 		<h1>1. Choose a Crust</h1>
 		<div class="row row-cols-md-3 g-2">
-				<div *ngFor="let crust of crusts; index as i;" class="btn-group-vertical" role="group">
-					<input type="radio" class="btn-check" name="btnradio_crust" id="btnradio_crust{{i}}" autocomplete="off" 
-					(click)="onClickAddCrust(crust)" 
-					[checked]="i === 0 ? true : false">
-					<!-- Selects and highlights Classic crust -->
-					<label class="btn btn-outline-primary" for="btnradio_crust{{i}}">
-						<img class="card-img-top ingredient-image mt-2" [src]="crust.image">
-						<h5 class="card-title m-2">{{crust.name}}</h5>
-					</label>
-				</div>
+			<div *ngFor="let crust of crusts; index as i;" class="btn-group-vertical" role="group">
+				<input (click)="onClickAddCrust(crust)" [checked]="i === 0 ? true : false" autocomplete="off"
+					   class="btn-check" id="btnradio_crust{{i}}"
+					   name="btnradio_crust"
+					   type="radio">
+				<!-- Selects and highlights Classic crust -->
+				<label class="btn btn-outline-primary" for="btnradio_crust{{i}}">
+					<img [src]="crust.image" class="card-img-top ingredient-image mt-2">
+					<h5 class="card-title m-2">{{crust.name}}</h5>
+				</label>
+			</div>
 		</div>
 	</div>
 	<div class="my-3">
 		<h1>2. Choose a Sauce</h1>
 		<div class="row row-cols-md-2 g-2">
 			<div *ngFor="let sauce of sauces; index as i;" class="btn-group-vertical" role="group">
-				<input type="radio" class="btn-check" 
-				name="btnradio_sauce" 
-				id="btnradio_sauce{{i}}" 
-				autocomplete="off" 
-				(click)="onClickAddSauce(sauce)" 
-				[checked]="i === 0 ? true : false">
+				<input (click)="onClickAddSauce(sauce)" [checked]="i === 0 ? true : false"
+					   autocomplete="off"
+					   class="btn-check"
+					   id="btnradio_sauce{{i}}"
+					   name="btnradio_sauce"
+					   type="radio">
 				<label class="btn btn-outline-primary" for="btnradio_sauce{{i}}">
-					<img class="card-img-top ingredient-image mt-2" [src]="sauce.image">
+					<img [src]="sauce.image" class="card-img-top ingredient-image mt-2">
 					<h5 class="card-title m-2">{{sauce.name}}</h5>
 				</label>
 			</div>
@@ -48,7 +81,8 @@
 		<div class="row">
 			<ng-container *ngFor="let topping of toppings; index as i;">
 				<div *ngIf="isVegetarian(topping.name)" class="card m-1 p-0" style="width: 16rem; height: 12rem;">
-					<img [src]="topping.image" class="card-img-top ingredient-image" style="width: parent; height: 8rem;">
+					<img [src]="topping.image" class="card-img-top ingredient-image"
+						 style="width: parent; height: 8rem;">
 					<div class="card-body">
 						<div class="row">
 							<div class="col">
@@ -74,7 +108,8 @@
 		<div class="row">
 			<ng-container *ngFor="let topping of toppings; index as i;">
 				<div *ngIf="isNonVegetarian(topping.name)" class="card m-1 p-0" style="width: 16rem; height: 12rem;">
-					<img [src]="topping.image" class="card-img-top ingredient-image" style="width: parent; height: 8rem;">
+					<img [src]="topping.image" class="card-img-top ingredient-image"
+						 style="width: parent; height: 8rem;">
 					<div class="card-body">
 						<div class="row">
 							<div class="col">
