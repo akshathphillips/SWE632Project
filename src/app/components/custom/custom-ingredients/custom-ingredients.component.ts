@@ -22,6 +22,9 @@ import { Toast } from "bootstrap";
 export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	@ViewChild('manyToppingToast', {static: true}) manyToppingToastElement: ElementRef | any;
+	@ViewChild('selectedSauceToast', {static: true}) selectedSauceToastElement: ElementRef | any;
+	@ViewChild('selectedCrustToast', {static: true}) selectedCrustToastElement: ElementRef | any;
+	@ViewChild('recentToppingToast', {static: true}) recentToppingToastElement: ElementRef | any;
 
 	readonly crusts: Crust[] = [
 		{name: 'Classic', image: '/assets/classic-crust.jpeg', addedCount: 0},
@@ -56,11 +59,17 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 
 	]
+
 	manyToppingToast: Toast | any;
+	selectedSauceToast: Toast | any;
+	selectedCrustToast: Toast | any;
+	recentToppingToast: Toast | any;
 
 	selectedCrust = new BehaviorSubject<Crust | any>(null);
 
 	selectedSauce = new BehaviorSubject<Sauce | any>(null);
+
+	recentTopping = new BehaviorSubject<Topping | any>(null);
 
 	selectedToppings = new BehaviorSubject<Topping[] | any>(null);
 
@@ -98,10 +107,14 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	onClickAddCrust(crust: Crust) {
 		this.customService.addCrust(crust);
+		if (this.selectedCrustToast)
+			this.selectedCrustToast.show();
 	}
 
 	onClickAddSauce(sauce: Sauce) {
 		this.customService.addSauce(sauce);
+		if (this.selectedSauceToast)
+			this.selectedSauceToast.show();
 	}
 
 	isToppingAdded(topping: Topping) {
@@ -113,7 +126,9 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 		if (currentSize > 2) {
 			this.manyToppingToast.show();
 		} else {
+			this.recentTopping.next(topping);
 			this.customService.addToppings(topping);
+			this.recentToppingToast.show();
 		}
 	}
 
@@ -131,14 +146,18 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	ngAfterViewInit(): void {
 		this.manyToppingToast = new Toast(this.manyToppingToastElement.nativeElement);
+		this.selectedSauceToast = new Toast(this.selectedSauceToastElement.nativeElement);
+		this.selectedCrustToast = new Toast(this.selectedCrustToastElement.nativeElement);
+		this.recentToppingToast = new Toast(this.recentToppingToastElement.nativeElement);
 	}
 
 	isVegetarian(topping: string): boolean {
-		if(['Mushrooms', 'Peppers','Olives','Corns','Zucchini','Spinach','Pineapple', 'Black Olives','Jalapeño', 'Eggplant'].includes(topping)) return true;
+		if (['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping)) return true;
 		else return false;
 	}
+
 	isNonVegetarian(topping: string): boolean {
-		if(!['Mushrooms', 'Peppers','Olives','Corns','Zucchini','Spinach','Pineapple', 'Black Olives','Jalapeño', 'Eggplant'].includes(topping)) return true;
+		if (!['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping)) return true;
 		else return false;
 	}
 }
