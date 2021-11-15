@@ -8,7 +8,7 @@ import {
 	ViewEncapsulation
 } from '@angular/core';
 import { SpecialityMenu } from "../../constants";
-import { CartService, Pizza } from "../../services";
+import { CartService, Pizza, Topping } from "../../services";
 import { Toast } from "bootstrap";
 
 @Component({
@@ -40,12 +40,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	}
 
 	isNonVegetarian(name: string): boolean {
-		if(['Classic Chicken', 'Classic Pepperoni'].includes(name)) return true;
+		if (['Classic Chicken', 'Classic Pepperoni'].includes(name)) return true;
 		else return false;
 	}
 
 	isVegetarian(name: string): boolean {
-		if(['Classic Cheese and Mushrooms', 'Mozzarella', 'Garden fresh veggie', 'Mushrooms and Peppers', 'Margherita'].includes(name)) return true;
+		if (['Classic Cheese and Mushrooms', 'Mozzarella', 'Garden fresh veggie', 'Mushrooms and Peppers', 'Margherita'].includes(name)) return true;
 		else return false;
 	}
 
@@ -56,6 +56,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.toast = new Toast(this.homeToastElement.nativeElement);
+	}
+
+	displayToppings(toppings: Topping[]): string[] {
+		const toppingsNames: string[] = [];
+		toppings.forEach((v) => {
+			toppingsNames.push(v.name);
+		})
+		return toppingsNames;
 	}
 
 }
