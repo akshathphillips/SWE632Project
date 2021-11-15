@@ -1,4 +1,13 @@
 <div class="container-fluid">
+	<nav class="app-breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+			<li class="breadcrumb-item"><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+			<li aria-current="page" class="breadcrumb-item active">Checkout</li>
+		</ol>
+	</nav>
+</div>
+<div class="container-fluid">
 	<form class="row g-3">
 		<div class="col-md-6">
 			<label class="form-label" for="inputEmail4">Email</label>
@@ -39,12 +48,12 @@
 				   value="1234 5678 9999 0000">
 		</div>
 		<!-- Heuristic Evaluation - Feedback 3.3: "When checking out, the user is not prompted to enter a security code for their card. This violates heuristic 4, consistency and standards. When using a credit card on any online shopping platform, users are forced to enter the three digit security code found on the back of their card in order to validate their credit card. This is a standard for online shopping." -->
-		<div class="col-md-2"> 
+		<div class="col-md-2">
 			<label class="form-label" for="inputCvv">Security Code / CVV</label>
 			<input class="form-control" id="inputCvv" type="text" value="123">
 		</div>
 		<div class="col-md-6">
-			<label class="form-label" for="inputCardExpiry">Card Expiry Date</label>
+			<label class="form-label">Card Expiry Date</label>
 			<input class="form-control" id="cardExpiry" type="date" value="0">
 		</div>
 		<div class="col-md-6">

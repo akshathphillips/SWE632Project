@@ -1,4 +1,12 @@
 <div class="container-fluid">
+	<nav class="app-breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+			<li aria-current="page" class="breadcrumb-item active">Cart</li>
+		</ol>
+	</nav>
+</div>
+<div class="container-fluid">
 	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 		<div #orderRemoveToast aria-atomic="true" aria-live="assertive"
 			 class="toast align-items-center text-white bg-warning border-0" role="alert">
@@ -42,17 +50,17 @@
 					<!-- Modified Card structure to make space for dropdown button -->
 					<h5 class="card-title row">
 						<div class="col">{{pizza.name}}</div>
-						<div class="col"> 
-							<img 	[attr.id]="'chevron-down-' + i" 
-									src="/assets/chevron-down.png" 
-									style="height: 30px; float: right;" 
-									(click)="collapsed[i] = true" 
-									[attr.hidden]="collapsed[i] == null || collapsed[i] != true ? null : 'true'">
-							<img 	[attr.id]="'chevron-up-' + i" 
-									src="/assets/chevron-up.png" 
-									style="height: 30px; float: right;" 
-									hidden (click)="collapsed[i] = false" 
-									[attr.hidden]="collapsed[i] == true ? null : 'true'">
+						<div class="col">
+							<img (click)="collapsed[i] = true"
+								 [attr.id]="'chevron-down-' + i"
+								 src="/assets/chevron-down.png"
+								 style="height: 30px; float: right;"
+								 [attr.hidden]="collapsed[i] == null || collapsed[i] != true ? null : 'true'">
+							<img (click)="collapsed[i] = false"
+								 [attr.id]="'chevron-up-' + i"
+								 hidden
+								 src="/assets/chevron-up.png" style="height: 30px; float: right;"
+								 [attr.hidden]="collapsed[i] == true ? null : 'true'">
 						</div>
 					</h5>
 					<div class="card-text" *ngIf="collapsed[i] == true">
