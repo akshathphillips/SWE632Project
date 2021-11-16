@@ -9,11 +9,14 @@ import {
 	OrderSuccessComponent,
 	PageNotFoundComponent
 } from "./components";
+import { CartService, Pizza } from "../app/services";
 
 const routes: Routes = [
 	{path: 'home', component: HomeComponent},
 	{path: 'menu', component: MenuComponent},
 	{path: 'custom', component: CustomComponent},
+	{path: 'custom-edit/*', component: CustomComponent},
+	{path: 'custom-edit', component: CustomComponent},
 	{path: 'cart', component: CartComponent},
 	{path: 'order-confirmation', component: OrderConfirmationComponent},
 	{path: 'order-success', component: OrderSuccessComponent},

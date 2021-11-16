@@ -8,11 +8,12 @@ import {
 	ViewChild,
 	ViewEncapsulation
 } from '@angular/core';
-import { Crust, CustomService, Sauce, Topping } from "../../../services";
+import { Crust, CustomService, Pizza, Sauce, Topping, CartService } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { Toast } from "bootstrap";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { CartComponent } from 'src/app';
 
 @Component({
 	selector: 'app-custom-ingredients',
@@ -68,6 +69,9 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 	errorToast: Toast | any;
 	successToast: Toast | any;
 
+	pizzaName: String | any;
+	modifyingPizza : Pizza | any;
+
 	manyToppingToast: Toast | any;
 	selectedSauceToast: Toast | any;
 	selectedCrustToast: Toast | any;
@@ -81,13 +85,15 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	selectedToppings = new BehaviorSubject<Topping[] | any>(null);
 
+	public static onReceivePizzaEdit: Subscription | undefined;
+
 	crustSubscription: Subscription | undefined;
 	sauceSubscription: Subscription | undefined;
 	toppingsSubscription: Subscription | undefined;
 
 	nameFormGroup: FormGroup | any;
 
-	constructor(private customService: CustomService, private router: Router, private _formBuilder: FormBuilder) {
+	constructor(private customService: CustomService,  private cartService: CartService, private router: Router, private _formBuilder: FormBuilder) {
 	}
 
 	ngOnInit(): void {
@@ -107,9 +113,42 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 			this.selectedToppings.next(v)
 		});
 
-		// Set default crust to Classic and default sauce to tomato (The UI prevents the user from causing an error)
-		this.onClickAddCrust(this.crusts[0]);
-		this.onClickAddSauce(this.sauces[0]);
+		this.initializeToasts();
+
+		CustomIngredientsComponent.onReceivePizzaEdit = CartComponent.clickedModify.subscribe((pizza: Pizza) => {
+			this.pizzaName = pizza == null ? "Custom Pizza" : pizza.name + " Modified";
+			this.modifyingPizza = pizza;
+			if(pizza == null) {
+				// Set default crust to Classic and default sauce to tomato (The UI prevents the user from causing an error)
+				this.onClickAddCrust(this.crusts[0]);
+				this.onClickAddSauce(this.sauces[0]);
+			} else {
+				this.customService.clear();
+				console.log(pizza);
+				this.customService.addCrust(pizza.crust);
+				this.customService.addSauce(pizza.sauce);
+				pizza.toppings.forEach(topping => {
+					if(topping.addedCount == 2) {
+						this.recentTopping.next(topping);
+						this.customService.addToppings(topping);
+						this.recentTopping.next(topping);
+						this.customService.addToppings(topping);
+					} else if(topping.addedCount == 1) {
+						this.recentTopping.next(topping);
+						this.customService.addToppings(topping);
+					}
+				});
+			}
+		});
+	}
+
+	initializeToasts() : void {
+		this.manyToppingToast = new Toast(this.manyToppingToastElement.nativeElement);
+		this.selectedSauceToast = new Toast(this.selectedSauceToastElement.nativeElement);
+		this.selectedCrustToast = new Toast(this.selectedCrustToastElement.nativeElement);
+		this.recentToppingToast = new Toast(this.recentToppingToastElement.nativeElement);
+		this.errorToast = new Toast(this.errorToastElement.nativeElement);
+		this.successToast = new Toast(this.successToastElement.nativeElement);
 	}
 
 	ngOnDestroy(): void {
@@ -159,12 +198,7 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 	}
 
 	ngAfterViewInit(): void {
-		this.manyToppingToast = new Toast(this.manyToppingToastElement.nativeElement);
-		this.selectedSauceToast = new Toast(this.selectedSauceToastElement.nativeElement);
-		this.selectedCrustToast = new Toast(this.selectedCrustToastElement.nativeElement);
-		this.recentToppingToast = new Toast(this.recentToppingToastElement.nativeElement);
-		this.errorToast = new Toast(this.errorToastElement.nativeElement);
-		this.successToast = new Toast(this.successToastElement.nativeElement);
+		
 	}
 
 	isVegetarian(topping: string): boolean {
@@ -180,7 +214,7 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 			this.errorToast.show();
 		} else {
 			this.successToast.show();
-			this.customService.addToCart(this.nameFormGroup?.get('name')?.value);
+			this.customService.addToCart(this.nameFormGroup?.get('name')?.value == "" ? this.nameFormGroup?.get('placeholder').value : this.nameFormGroup?.get('name')?.value);
 			setTimeout(() => {
 				this.router.navigate(['/']);
 			}, 1500)

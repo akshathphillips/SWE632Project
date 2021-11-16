@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Crust, CustomService, Sauce, Topping } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-custom-creator',
@@ -21,7 +22,7 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 	sauceSubscription: Subscription | undefined;
 	toppingsSubscription: Subscription | undefined;
 
-	constructor(private customService: CustomService) {
+	constructor(private customService: CustomService, private route: ActivatedRoute, private router: Router) {
 	}
 
 	ngOnInit(): void {
@@ -37,7 +38,6 @@ export class CustomCreatorComponent implements OnInit, OnDestroy {
 			this.selectedToppings.next(v)
 		});
 	}
-
 
 	ngOnDestroy(): void {
 		this.crustSubscription?.unsubscribe();

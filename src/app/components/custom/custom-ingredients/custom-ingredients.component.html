@@ -205,7 +205,7 @@
 				<div class="mb-3">
 					<form [formGroup]="nameFormGroup">
 						<label class="form-label" for="pizza-name">Name</label>
-						<input class="form-control" formControlName="name" id="pizza-name" placeholder="Custom Creation"
+						<input class="form-control" formControlName="name" id="pizza-name" [placeholder]="pizzaName"
 							   type="text">
 					</form>
 				</div>

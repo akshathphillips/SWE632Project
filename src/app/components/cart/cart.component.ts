@@ -8,8 +8,9 @@ import {
 	ViewChild,
 	ViewEncapsulation
 } from '@angular/core';
+import { Router} from '@angular/router';
 import { CartService, Pizza } from "../../services";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Toast } from "bootstrap";
 
 @Component({
@@ -25,13 +26,13 @@ export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 	collapsed: boolean[] = [];
 
 	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
+	public static clickedModify : BehaviorSubject<Pizza> = new BehaviorSubject<Pizza | any>(null);
 
 	pizzasSubscription: Subscription | undefined;
 
 	orderRemoveToast: Toast | any;
 
-	constructor(private cartService: CartService) {
-	}
+	constructor(private cartService: CartService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.pizzasSubscription = this.cartService.pizzasChanged.subscribe((v) => {
@@ -46,6 +47,12 @@ export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 	onClickRemovePizza(index: number) {
 		this.cartService.deletePizza(index);
 		this.orderRemoveToast.show();
+	}
+
+	onClickModifyPizza(pizza: Pizza, index: number) {
+		this.router.navigate(['/custom-edit', pizza]);
+		CartComponent.clickedModify.next(pizza);
+		this.cartService.deletePizza(index);
 	}
 
 	ngAfterViewInit(): void {
