@@ -113,7 +113,8 @@
 		</ul>
 		<ul class="navbar-nav justify-content-end">
 			<li class="nav-item mx-4" title="Cart">
-				<a class="nav-link position-relative" routerLink="/cart" routerLinkActive="active">
+				<a class="nav-link position-relative"
+				   routerLink="/cart" routerLinkActive="active">
 					<i class="bi bi-cart4"></i>
 					<span *ngIf="(selectedPizzas | async)?.length"
 						  class="mt-2 position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -129,9 +130,7 @@
 
 <!--Main-->
 <div class="mt-5 pt-4">
-	<router-outlet>
-
-	</router-outlet>
+	<router-outlet></router-outlet>
 </div>
 
 <!--End Main-->

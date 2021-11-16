@@ -3,6 +3,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	Input,
 	OnDestroy,
 	OnInit,
 	ViewChild,
@@ -22,6 +23,8 @@ import { Toast } from "bootstrap";
 })
 export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 	@ViewChild('orderRemoveToast', {static: true}) orderRemoveElement: ElementRef | any;
+
+	@Input() usedInSidebar: boolean = false;
 
 	collapsed: boolean[] = [];
 
