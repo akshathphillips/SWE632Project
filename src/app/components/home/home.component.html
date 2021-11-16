@@ -17,73 +17,92 @@
 	</nav>
 </div>
 
-<section class="jumbotron text-center">
-	<div class="container-fluid">
-		<h1 class="jumbotron-heading">Welcome to Pizza Creation</h1>
-		<p class="lead text-muted">SWE 632 - Group Project - Akshath Phillips, Daksha Arora, Madhav Shroff</p>
-		<p><a class="btn btn-primary my-2 mx-2" href="#" routerLink="/custom" routerLinkActive="active">
-			Create your own pizza
-		</a>
-		</p>
-	</div>
-</section>
-
-<div class="album py-3 bg-light">
-	<div class="container-fluid">
-		<h1 class="display-4">Speciality Pizzas</h1>
-		<h1 class="display-6">Non Vegetarian</h1>
-		<div class="row">
-			<ng-container *ngFor="let speciality of specialities; index as i;">
-				<div *ngIf="isNonVegetarian(speciality.name)" class="col-md-4">
-					<div class="card mb-4 box-shadow">
-						<img [src]="speciality.image"
-							 class="card-img-top pizza-image">
-						<div class="card-body">
-							<h5 class="card-title">{{speciality.name}}</h5>
-							<h6 class="card-subtitle mb-2 text-muted">
-								{{speciality.pizza.crust.name}} sauce, {{speciality.pizza.sauce.name}} crust,
-								{{displayToppings(speciality.pizza.toppings)}}
-							</h6>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<button (click)="onClickAddToCart(speciality.pizza)"
-											class="btn btn-sm btn-outline-secondary"
-											type="button">Add to cart
-									</button>
-								</div>
-								<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</ng-container>
+<div class="container">
+	<div class="row py-3">
+		<div class="col-3 order-2" id="sticky-sidebar">
+			<div class="sticky-top mat-elevation-z8 mt-6 rounded-3">
+				<app-cart >
+				</app-cart>
+			</div>
 		</div>
-		<h1 class="display-6 mt-2">Vegetarian</h1>
-		<div class="row">
-			<ng-container *ngFor="let speciality of specialities; index as i;">
-				<div *ngIf="isVegetarian(speciality.name)" class="col-md-4">
-					<div class="card mb-4 box-shadow">
-						<img [src]="speciality.image"
-							 class="card-img-top pizza-image">
-						<div class="card-body">
-							<h5 class="card-title">{{speciality.name}}</h5>
-							<h6 class="card-subtitle mb-2 text-muted text-lowercase">
-								{{speciality.pizza.crust.name}} sauce, {{speciality.pizza.sauce.name}} crust,
-								{{displayToppings(speciality.pizza.toppings)}}
-							</h6>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<button (click)="onClickAddToCart(speciality.pizza)"
-											class="btn btn-sm btn-outline-secondary"
-											type="button">Add to cart
-									</button>
+		<div class="col" id="main">
+			<section class="jumbotron text-center">
+				<div class="container-fluid">
+					<h1 class="jumbotron-heading">Welcome to Pizza Creation</h1>
+					<p class="lead text-muted">SWE 632 - Group Project - Akshath Phillips, Daksha Arora, Madhav Shroff</p>
+					<p><a class="btn btn-primary my-2 mx-2" href="#" routerLink="/custom" routerLinkActive="active">
+						Create your own pizza
+					</a>
+					</p>
+				</div>
+			</section>
+			<div class="album py-3 bg-light">
+				<div class="container-fluid">
+					<h1 class="display-4">Speciality Pizzas</h1>
+					<h1 class="display-6">Non Vegetarian</h1>
+					<div class="row">
+						<ng-container *ngFor="let speciality of specialities; index as i;">
+							<div *ngIf="isNonVegetarian(speciality.name)" class="col-md-4">
+								<div class="card mb-4 box-shadow">
+									<img [src]="speciality.image"
+										 class="card-img-top pizza-image">
+									<div class="card-body">
+										<h5 class="card-title">{{speciality.name}}</h5>
+										<h6 class="card-subtitle mb-2 text-muted">
+											{{speciality.pizza.crust.name}} sauce, {{speciality.pizza.sauce.name}} crust,
+											{{displayToppings(speciality.pizza.toppings)}}
+										</h6>
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="btn-group">
+												<button (click)="onClickAddToCart(speciality.pizza)"
+														class="btn btn-sm btn-outline-secondary"
+														type="button">Add to cart
+												</button>
+											</div>
+											<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
+										</div>
+									</div>
 								</div>
-								<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
 							</div>
-						</div>
+						</ng-container>
+					</div>
+					<h1 class="display-6 mt-2">Vegetarian</h1>
+					<div class="row">
+						<ng-container *ngFor="let speciality of specialities; index as i;">
+							<div *ngIf="isVegetarian(speciality.name)" class="col-md-4">
+								<div class="card mb-4 box-shadow">
+									<img [src]="speciality.image"
+										 class="card-img-top pizza-image">
+									<div class="card-body">
+										<h5 class="card-title">{{speciality.name}}</h5>
+										<h6 class="card-subtitle mb-2 text-muted text-lowercase">
+											{{speciality.pizza.crust.name}} sauce, {{speciality.pizza.sauce.name}} crust,
+											{{displayToppings(speciality.pizza.toppings)}}
+										</h6>
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="btn-group">
+												<button (click)="onClickAddToCart(speciality.pizza)"
+														class="btn btn-sm btn-outline-secondary"
+														type="button">Add to cart
+												</button>
+											</div>
+											<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ng-container>
 					</div>
 				</div>
-			</ng-container>
+			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	@media only screen and (max-width: 997px) {
+		div#sticky-sidebar {
+			display: none;
+		}
+	}
+</style>

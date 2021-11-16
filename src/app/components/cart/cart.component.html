@@ -1,12 +1,4 @@
 <div class="container-fluid">
-	<nav class="app-breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
-			<li aria-current="page" class="breadcrumb-item active">Cart</li>
-		</ol>
-	</nav>
-</div>
-<div class="container-fluid">
 	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 		<div #orderRemoveToast aria-atomic="true" aria-live="assertive"
 			 class="toast align-items-center text-white bg-warning border-0" role="alert">
@@ -17,8 +9,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="d-flex justify-content-between">
-		<h1 class="display-6">Cart</h1>
+	<div class="d-flex justify-content-between mt-4">
+		<h1 class="mt-5 ml-3">Cart</h1>
 		<button *ngIf="(selectedPizzas | async)?.length"
 				class="btn btn-primary align-self-center"
 				routerLink="/order-confirmation">Checkout
@@ -26,25 +18,23 @@
 	</div>
 	<div *ngIf="(selectedPizzas | async)?.length">
 		<div class="d-flex justify-content-center">
-			<h5>
-				Order total
+			<h5> Order total
 				<small class="text-muted">${{12.99 * (selectedPizzas | async).length}}</small>
 			</h5>
 		</div>
 		<div class="d-flex justify-content-center align-items-start">
-			<h5>
-				Creation time
+			<h5> Creation time
 				<small class="text-muted">~{{5 * (selectedPizzas | async).length}} mins</small>
 			</h5>
 		</div>
 	</div>
 	<div *ngIf="!(selectedPizzas | async)?.length">
-		<div class="d-flex justify-content-center">
-			<p class="lead">Cart is empty</p>
+		<div class="d-flex justify-content-center m-3">
+			<p class="lead mb-5">Cart is empty</p>
 		</div>
 	</div>
-	<div *ngIf="(selectedPizzas | async)?.length" class="row">
-		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
+	<div *ngIf="(selectedPizzas | async)?.length" class="row p-2">
+		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col m-1">
 			<div class="card w-100">
 				<div class="card-body">
 					<!-- Modified Card structure to make space for dropdown button -->
@@ -93,8 +83,8 @@
 						</ul>
 					</div>
 					<div class="d-flex justify-content-between mt-3">
-						<div>Quantity : {{ pizza.qty }}</div>
-						<button (click)="onClickRemovePizza(i)" class="btn btn-danger">Remove</button>
+						<div>Qty : {{ pizza.qty }}</div>
+						<button (click)="onClickRemovePizza(i)" class="btn-sm btn-danger">Remove</button>
 					</div>
 				</div>
 			</div>
