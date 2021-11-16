@@ -1,26 +1,5 @@
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-	<div #errorToast aria-atomic="true" aria-live="assertive"
-		 class="toast align-items-center text-white bg-danger border-0" role="alert">
-		<div class="d-flex">
-			<div class="toast-body">
-				Error! Pizza options missing.
-			</div>
-		</div>
-	</div>
-</div>
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 12">
-	<div #successToast aria-atomic="true" aria-live="assertive"
-		 class="toast align-items-center text-white bg-success border-0" role="alert">
-		<div class="d-flex">
-			<div class="toast-body">
-				Success! Added custom pizza to cart.
-			</div>
-		</div>
-	</div>
-</div>
-
 <div
-	class="container-fluid sticky-top my-5" style="top: 50px">
+	class="container-fluid sticky-top my-lg-5 my-md-5 pt-md-4 pt-lg-4">
 	<div class="card text-center">
 		<div class="card-header">
 			Your Pizza
@@ -67,16 +46,11 @@
 					<li *ngIf="!(selectedToppings | async) || !(selectedToppings | async).length"
 						class="list-group-item d-flex justify-content-between align-items-start">
 						<div class="ms-2 me-auto">
-							<div class="text-danger"><strong>Topping(s)</strong> is(are) required</div>
+							<div class="text-danger"><strong>Topping(s)</strong> is (are) required</div>
 						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="card-footer text-muted">
-			<a (click)="onClickAddToCart()" class="btn btn-primary">
-				Add to Cart
-			</a>
 		</div>
 	</div>
 </div>

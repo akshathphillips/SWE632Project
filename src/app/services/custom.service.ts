@@ -32,7 +32,7 @@ export class CustomService {
 	private crust: Crust | null = null;
 	private sauce: Sauce | null = null;
 	private toppings: Topping[] | null = null;
-	private name : string = "Custom Creation";
+	private name: string = "Custom Creation";
 
 	constructor(private cartService: CartService) {
 	}
@@ -106,9 +106,16 @@ export class CustomService {
 		this.toppingsChanged.next(this.toppings.slice());
 	}
 
-	addToCart() {
+	addToCart(name?: string) {
 		if (this.crust && this.sauce && this.toppings && this.toppings.length) {
-			let pizza : Pizza = {name: this.name, time: 5, crust: this.crust, sauce: this.sauce, toppings: this.toppings, qty: 1};
+			let pizza: Pizza = {
+				name: name ? name : this.name,
+				time: 5,
+				crust: this.crust,
+				sauce: this.sauce,
+				toppings: this.toppings,
+				qty: 1
+			};
 			this.cartService.addPizza(pizza);
 		}
 	}

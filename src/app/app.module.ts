@@ -15,6 +15,15 @@ import {
 	OrderSuccessComponent,
 	PageNotFoundComponent
 } from './components';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
 	declarations: [
@@ -32,7 +41,16 @@ import {
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		AppRoutingModule
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatStepperModule,
+		MatFormFieldModule,
+		ReactiveFormsModule,
+		MatIconModule,
+		MatButtonModule,
+		MatCardModule,
+		ScrollingModule,
+		MatSidenavModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

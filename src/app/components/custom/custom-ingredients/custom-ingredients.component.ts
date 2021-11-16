@@ -11,6 +11,8 @@ import {
 import { Crust, CustomService, Sauce, Topping } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { Toast } from "bootstrap";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
 	selector: 'app-custom-ingredients',
@@ -60,6 +62,12 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	]
 
+	@ViewChild('errorToast', {static: true}) errorToastElement: ElementRef | any;
+	@ViewChild('successToast', {static: true}) successToastElement: ElementRef | any;
+
+	errorToast: Toast | any;
+	successToast: Toast | any;
+
 	manyToppingToast: Toast | any;
 	selectedSauceToast: Toast | any;
 	selectedCrustToast: Toast | any;
@@ -77,10 +85,16 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 	sauceSubscription: Subscription | undefined;
 	toppingsSubscription: Subscription | undefined;
 
-	constructor(private customService: CustomService) {
+	nameFormGroup: FormGroup | any;
+
+	constructor(private customService: CustomService, private router: Router, private _formBuilder: FormBuilder) {
 	}
 
 	ngOnInit(): void {
+		this.nameFormGroup = this._formBuilder.group({
+			name: [''],
+		});
+
 		this.crustSubscription = this.customService.crustChanged.subscribe((v) => {
 			this.selectedCrust.next(v)
 		});
@@ -149,15 +163,27 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 		this.selectedSauceToast = new Toast(this.selectedSauceToastElement.nativeElement);
 		this.selectedCrustToast = new Toast(this.selectedCrustToastElement.nativeElement);
 		this.recentToppingToast = new Toast(this.recentToppingToastElement.nativeElement);
+		this.errorToast = new Toast(this.errorToastElement.nativeElement);
+		this.successToast = new Toast(this.successToastElement.nativeElement);
 	}
 
 	isVegetarian(topping: string): boolean {
-		if (['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping)) return true;
-		else return false;
+		return ['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping);
 	}
 
 	isNonVegetarian(topping: string): boolean {
-		if (!['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping)) return true;
-		else return false;
+		return !['Mushrooms', 'Peppers', 'Olives', 'Corns', 'Zucchini', 'Spinach', 'Pineapple', 'Black Olives', 'Jalapeño', 'Eggplant'].includes(topping);
+	}
+
+	onClickAddToCart() {
+		if (!this.selectedCrust.value || !this.selectedSauce.value || !this.selectedToppings.value?.length) {
+			this.errorToast.show();
+		} else {
+			this.successToast.show();
+			this.customService.addToCart(this.nameFormGroup?.get('name')?.value);
+			setTimeout(() => {
+				this.router.navigate(['/']);
+			}, 1500)
+		}
 	}
 }
