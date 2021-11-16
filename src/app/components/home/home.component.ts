@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	OnDestroy,
@@ -11,7 +12,7 @@ import {
 import { SpecialityMenu } from "../../constants";
 import { CartService, Pizza, Topping } from "../../services";
 import { Toast } from "bootstrap";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { MediaMatcher } from "@angular/cdk/layout";
 
 @Component({
 	selector: 'app-home-component',
@@ -26,33 +27,29 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	toast: Toast | any;
 
-	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
-
-	pizzasSubscription: Subscription | undefined;
-
-	collapsed: boolean[] = [];
-
-
+	mobileQuery: MediaQueryList | any;
 	readonly specialities: {
 		name: string,
 		image: string,
 		description: string,
 		pizza: Pizza
 	} [] = SpecialityMenu
-
 	showMe = false;
 
-	constructor(private cartService: CartService) {
+	private _mobileQueryListener: () => any;
+
+	constructor(private cartService: CartService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+		this.mobileQuery = media.matchMedia('(max-width: 600px)');
+		this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+		this.mobileQuery.addListener(this._mobileQueryListener);
 	}
 
 	ngOnInit(): void {
-		this.pizzasSubscription = this.cartService.pizzasChanged.subscribe((v) => {
-			this.selectedPizzas.next(v)
-		});
+
 	}
 
 	ngOnDestroy(): void {
-		this.pizzasSubscription?.unsubscribe();
+		this.mobileQuery.removeListener(this._mobileQueryListener);
 	}
 
 	isNonVegetarian(name: string): boolean {
