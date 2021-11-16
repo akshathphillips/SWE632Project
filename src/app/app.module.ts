@@ -24,6 +24,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatSelectModule } from "@angular/material/select";
+import { MatOptionModule } from "@angular/material/core";
 
 @NgModule({
 	declarations: [
@@ -50,7 +52,9 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 		MatButtonModule,
 		MatCardModule,
 		ScrollingModule,
-		MatSidenavModule
+		MatSidenavModule,
+		MatSelectModule,
+		MatOptionModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

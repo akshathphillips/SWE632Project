@@ -3,6 +3,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	OnDestroy,
 	OnInit,
 	ViewChild,
 	ViewEncapsulation
@@ -10,6 +11,7 @@ import {
 import { SpecialityMenu } from "../../constants";
 import { CartService, Pizza, Topping } from "../../services";
 import { Toast } from "bootstrap";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-home-component',
@@ -18,11 +20,18 @@ import { Toast } from "bootstrap";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	@ViewChild('homeToast', {static: true}) homeToastElement: ElementRef | any;
 
 	toast: Toast | any;
+
+	selectedPizzas = new BehaviorSubject<Pizza[] | any>(null);
+
+	pizzasSubscription: Subscription | undefined;
+
+	collapsed: boolean[] = [];
+
 
 	readonly specialities: {
 		name: string,
@@ -37,6 +46,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
+		this.pizzasSubscription = this.cartService.pizzasChanged.subscribe((v) => {
+			this.selectedPizzas.next(v)
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.pizzasSubscription?.unsubscribe();
 	}
 
 	isNonVegetarian(name: string): boolean {
