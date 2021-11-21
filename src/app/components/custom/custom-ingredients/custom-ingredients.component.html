@@ -76,7 +76,7 @@
 								   name="btnradio_crust"
 								   type="radio">
 							<!-- Selects and highlights Classic crust -->
-							<label class="btn btn-outline-primary" for="btnradio_crust{{i}}">
+							<label class="btn btn-outline-success" for="btnradio_crust{{i}}">
 								<img [src]="crust.image" class="card-img-top ingredient-image mt-2">
 								<h5 class="card-title m-2">{{crust.name}}</h5>
 							</label>
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div>
-					<button class="btn btn-primary" matStepperNext type="button">
+					<button class="btn btn-success" matStepperNext type="button">
 						Next
 					</button>
 				</div>
@@ -100,7 +100,7 @@
 								   id="btnradio_sauce{{i}}"
 								   name="btnradio_sauce"
 								   type="radio">
-							<label class="btn btn-outline-primary" for="btnradio_sauce{{i}}">
+							<label class="btn btn-outline-success" for="btnradio_sauce{{i}}">
 								<img [src]="sauce.image" class="card-img-top ingredient-image mt-2">
 								<h5 class="card-title m-2">{{sauce.name}}</h5>
 							</label>
@@ -108,10 +108,10 @@
 					</div>
 				</div>
 				<div class="p-2">
-					<button class="btn btn-secondary me-2" matStepperPrevious type="button">
+					<button class="btn btn-primary me-2" matStepperPrevious type="button">
 						Back
 					</button>
-					<button class="btn btn-primary" matStepperNext type="button">
+					<button class="btn btn-success" matStepperNext type="button">
 						Next
 					</button>
 				</div>
@@ -137,7 +137,7 @@
 													<i class="bi bi-plus"></i>
 												</button>
 												<button (click)="onClickRemoveTopping(topping)"
-														class="btn btn-secondary"
+														class="btn btn-danger"
 														type="button">
 													<i class="bi bi-dash"></i>
 												</button>
@@ -150,10 +150,10 @@
 					</div>
 				</div>
 				<div class="p-2">
-					<button class="btn btn-secondary me-2" matStepperPrevious type="button">
+					<button class="btn btn-primary me-2" matStepperPrevious type="button">
 						Back
 					</button>
-					<button class="btn btn-primary" matStepperNext type="button">
+					<button class="btn btn-success" matStepperNext type="button">
 						Next
 					</button>
 				</div>
@@ -179,7 +179,7 @@
 													<i class="bi bi-plus"></i>
 												</button>
 												<button (click)="onClickRemoveTopping(topping)"
-														class="btn btn-secondary"
+														class="btn btn-danger"
 														type="button">
 													<i class="bi bi-dash"></i>
 												</button>
@@ -192,14 +192,14 @@
 					</div>
 				</div>
 				<div class="p-2">
-					<button class="btn btn-secondary me-2" matStepperPrevious type="button">
+					<button class="btn btn-primary me-2" matStepperPrevious type="button">
 						Back
 					</button>
-					<button [disabled]="!(selectedToppings | async)?.length" class="btn btn-primary" matStepperNext
+					<button [disabled]="!(selectedToppings | async)?.length" class="btn btn-success" matStepperNext
 							type="button">
 						Next
 					</button>
-					<div *ngIf="!(selectedToppings | async)?.length" class="text-danger p-2">
+					<div *ngIf="!(selectedToppings | async)?.length" class="text-danger pt-2">
 						In order to continue, <strong>you must select at-least 1 topping</strong>
 					</div>
 				</div>
@@ -214,7 +214,7 @@
 					</form>
 				</div>
 				<div class="p-2">
-					<button class="btn btn-secondary me-2" matStepperPrevious type="button">
+					<button class="btn btn-primary me-2" matStepperPrevious type="button">
 						Back
 					</button>
 					<button (click)="onClickAddToCart()" class="btn btn-success" type="button">
