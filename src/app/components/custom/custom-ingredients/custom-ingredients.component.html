@@ -195,9 +195,13 @@
 					<button class="btn btn-secondary me-2" matStepperPrevious type="button">
 						Back
 					</button>
-					<button class="btn btn-primary" matStepperNext type="button">
+					<button [disabled]="!(selectedToppings | async)?.length" class="btn btn-primary" matStepperNext
+							type="button">
 						Next
 					</button>
+					<div *ngIf="!(selectedToppings | async)?.length" class="text-danger p-2">
+						In order to continue, <strong>you must select at-least 1 topping</strong>
+					</div>
 				</div>
 			</mat-step>
 			<mat-step label="Name your pizza">
