@@ -52,14 +52,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 		this.mobileQuery.removeListener(this._mobileQueryListener);
 	}
 
-	isNonVegetarian(name: string): boolean {
-		if (['Classic Chicken', 'Classic Pepperoni'].includes(name)) return true;
-		else return false;
-	}
-
 	isVegetarian(name: string): boolean {
-		if (['Classic Cheese and Mushrooms', 'Mozzarella', 'Garden fresh veggie', 'Mushrooms and Peppers', 'Margherita'].includes(name)) return true;
-		else return false;
+		return ['Classic Cheese and Mushrooms', 'Mozzarella', 'Garden fresh veggie', 'Mushrooms and Peppers', 'Margherita'].includes(name);
 	}
 
 	onClickAddToCart(pizza: Pizza) {
@@ -74,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 	displayToppings(toppings: Topping[]): string[] {
 		const toppingsNames: string[] = [];
 		toppings.forEach((v) => {
-			toppingsNames.push(v.name);
+			toppingsNames.push(' ' + v.name);
 		})
 		return toppingsNames;
 	}
