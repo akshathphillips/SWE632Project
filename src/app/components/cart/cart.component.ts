@@ -9,7 +9,7 @@ import {
 	ViewChild,
 	ViewEncapsulation
 } from '@angular/core';
-import { CartService, Pizza } from "../../services";
+import { CartService, Pizza, Topping } from "../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { Toast } from "bootstrap";
 
@@ -53,5 +53,13 @@ export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.orderRemoveToast = new Toast(this.orderRemoveElement.nativeElement);
+	}
+
+	displayToppings(toppings: Topping[]): string[] {
+		const toppingsNames: string[] = [];
+		toppings.forEach((v) => {
+			toppingsNames.push(v.name);
+		})
+		return toppingsNames;
 	}
 }

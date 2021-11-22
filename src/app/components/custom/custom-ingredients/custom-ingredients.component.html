@@ -1,227 +1,237 @@
 <div class="container-fluid">
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1022">
-		<div #manyToppingToast aria-atomic="true" aria-live="assertive"
-			 class="toast align-items-center text-white bg-warning border-0" role="alert">
-			<div class="d-flex">
-				<div class="toast-body">
-					Maximum of double toppings allowed. Cannot add more of the same topping.
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-		<div #selectedCrustToast aria-atomic="true"
-			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
-			<div *ngIf="(selectedCrust | async)" class="d-flex">
-				<div class="toast-body">
-					Pizza crust changed to {{(selectedCrust | async).name}}
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-		<div #selectedSauceToast aria-atomic="true"
-			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
-			<div *ngIf="(selectedSauce | async)" class="d-flex">
-				<div class="toast-body">
-					Pizza sauce changed to {{(selectedSauce | async).name}}
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-		<div #recentToppingToast aria-atomic="true"
-			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0"
-			 role="alert">
-			<div *ngIf="(recentTopping | async)" class="d-flex">
-				<div class="toast-body">
-					Topping {{(recentTopping | async).name}} added! Your pizza now has quantity:
-					{{(recentTopping | async).addedCount}} of {{(recentTopping | async).name}}.
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-		<div #errorToast aria-atomic="true" aria-live="assertive"
-			 class="toast align-items-center text-white bg-danger border-0" role="alert">
-			<div class="d-flex">
-				<div class="toast-body">
-					Error! Pizza options missing.
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-		<div #successToast aria-atomic="true" aria-live="assertive"
-			 class="toast align-items-center text-white bg-success border-0" role="alert">
-			<div class="d-flex">
-				<div class="toast-body">
-					Success! Added custom pizza to cart.
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1022">
+        <div #manyToppingToast aria-atomic="true" aria-live="assertive"
+             class="toast align-items-center text-white bg-warning border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Maximum of double toppings allowed. Cannot add more of the same topping.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #selectedCrustToast aria-atomic="true"
+             aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+            <div *ngIf="(selectedCrust | async)" class="d-flex">
+                <div class="toast-body">
+                    Pizza crust changed to {{(selectedCrust | async).name}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #selectedSauceToast aria-atomic="true"
+             aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+            <div *ngIf="(selectedSauce | async)" class="d-flex">
+                <div class="toast-body">
+                    Pizza sauce changed to {{(selectedSauce | async).name}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #recentToppingToast aria-atomic="true"
+             aria-live="assertive" class="toast align-items-center text-white bg-info border-0"
+             role="alert">
+            <div *ngIf="(recentTopping | async)" class="d-flex">
+                <div class="toast-body">
+                    Topping {{(recentTopping | async).name}} added! Your pizza now has quantity:
+                    {{(recentTopping | async).addedCount}} of {{(recentTopping | async).name}}.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #errorToast aria-atomic="true" aria-live="assertive"
+             class="toast align-items-center text-white bg-danger border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Error! Pizza options missing.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #sameNameErrorToast aria-atomic="true" aria-live="assertive"
+             class="toast align-items-center text-white bg-danger border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Error! A pizza with the same name already exists.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
+        <div #successToast aria-atomic="true" aria-live="assertive"
+             class="toast align-items-center text-white bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Success! Added custom pizza to cart.
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<h1 class="display-1">Create your own pizza</h1>
-	<div class="my-3">
-		<mat-stepper [linear]="true">
-			<mat-step label="Crust" state="crust">
-				<p>1. Choose a Crust</p>
-				<div class="wizard-scroll">
-					<div class="d-flex flex-row" style="width:200%;">
-						<div *ngFor="let crust of crusts; index as i;" class="btn-group-vertical w-100 p-2"
-							 role="group">
-							<input (click)="onClickAddCrust(crust)" [checked]="i === 0" autocomplete="off"
-								   class="btn-check" id="btnradio_crust{{i}}"
-								   name="btnradio_crust"
-								   type="radio">
-							<!-- Selects and highlights Classic crust -->
-							<label class="btn btn-outline-success" for="btnradio_crust{{i}}">
-								<img [src]="crust.image" class="card-img-top ingredient-image mt-2">
-								<h5 class="card-title m-2">{{crust.name}}</h5>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div>
-					<button class="btn btn-success" matStepperNext type="button">
-						Next
-					</button>
-				</div>
-			</mat-step>
-			<mat-step label="Sauce" state="sauce">
-				<p>2. Choose a Sauce</p>
-				<div class="wizard-scroll">
-					<div class="d-flex flex-row" style="width:100%;">
-						<div *ngFor="let sauce of sauces; index as i;" class="btn-group-vertical w-50 p-2" role="group">
-							<input (click)="onClickAddSauce(sauce)" [checked]="i === 0 ? true : false"
-								   autocomplete="off"
-								   class="btn-check"
-								   id="btnradio_sauce{{i}}"
-								   name="btnradio_sauce"
-								   type="radio">
-							<label class="btn btn-outline-success" for="btnradio_sauce{{i}}">
-								<img [src]="sauce.image" class="card-img-top ingredient-image mt-2">
-								<h5 class="card-title m-2">{{sauce.name}}</h5>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="p-2">
-					<button class="btn btn-primary me-2" matStepperPrevious type="button">
-						Back
-					</button>
-					<button class="btn btn-success" matStepperNext type="button">
-						Next
-					</button>
-				</div>
-			</mat-step>
-			<mat-step label="Vegetables" state="vtoppings">
-				<p>3. Choose your Vegetables</p>
-				<div class="wizard-scroll">
-					<div class="d-flex flex-row" style="width:200%;">
-						<div *ngFor="let topping of toppings; index as i;">
-							<div *ngIf="isVegetarian(topping.name)" class="card m-1 p-0"
-								 style="width: 16rem; height: 100%;">
-								<img [src]="topping.image" class="card-img-top ingredient-image"
-									 style="width: 100%;">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title">{{topping.name}}</h5>
-										</div>
-										<div class="col">
-											<div class="justify-content-end">
-												<button (click)="onClickAddTopping(topping)" class="btn btn-primary"
-														type="button">
-													<i class="bi bi-plus"></i>
-												</button>
-												<button (click)="onClickRemoveTopping(topping)"
-														class="btn btn-danger"
-														type="button">
-													<i class="bi bi-dash"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="p-2">
-					<button class="btn btn-primary me-2" matStepperPrevious type="button">
-						Back
-					</button>
-					<button class="btn btn-success" matStepperNext type="button">
-						Next
-					</button>
-				</div>
-			</mat-step>
-			<mat-step label="Proteins" state="ptoppings">
-				<p>4. Choose your Proteins</p>
-				<div class="wizard-scroll">
-					<div class="d-flex flex-row" style="width:200%;">
-						<div *ngFor="let topping of toppings; index as i;">
-							<div *ngIf="isNonVegetarian(topping.name)" class="card m-1 p-0"
-								 style="width: 16rem; height: 100%;">
-								<img [src]="topping.image" class="card-img-top ingredient-image"
-									 style="width: 100%;">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title">{{topping.name}}</h5>
-										</div>
-										<div class="col">
-											<div class="justify-content-end">
-												<button (click)="onClickAddTopping(topping)" class="btn btn-primary"
-														type="button">
-													<i class="bi bi-plus"></i>
-												</button>
-												<button (click)="onClickRemoveTopping(topping)"
-														class="btn btn-danger"
-														type="button">
-													<i class="bi bi-dash"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="p-2">
-					<button class="btn btn-primary me-2" matStepperPrevious type="button">
-						Back
-					</button>
-					<button [disabled]="!(selectedToppings | async)?.length" class="btn btn-success" matStepperNext
-							type="button">
-						Next
-					</button>
-					<div *ngIf="!(selectedToppings | async)?.length" class="text-danger pt-2">
-						In order to continue, <strong>you must select at-least 1 topping</strong>
-					</div>
-				</div>
-			</mat-step>
-			<mat-step label="Name your pizza">
-				<p>5. Name your pizza (Optional)</p>
-				<div class="mb-3">
-					<form [formGroup]="nameFormGroup">
-						<label class="form-label" for="pizza-name">Name</label>
-						<input class="form-control" formControlName="name" id="pizza-name" placeholder="Custom Creation"
-							   type="text">
-					</form>
-				</div>
-				<div class="p-2">
-					<button class="btn btn-primary me-2" matStepperPrevious type="button">
-						Back
-					</button>
-					<button (click)="onClickAddToCart()" class="btn btn-success" type="button">
-						Add to Cart
-					</button>
-				</div>
-			</mat-step>
-		</mat-stepper>
-	</div>
+    <h1 class="display-1">Create your own pizza</h1>
+    <div class="my-3">
+        <mat-stepper [linear]="true">
+            <mat-step label="Crust" state="crust">
+                <p>1. Choose a Crust</p>
+                <div class="wizard-scroll">
+                    <div class="d-flex flex-row" style="width:200%;">
+                        <div *ngFor="let crust of crusts; index as i;" class="btn-group-vertical w-100 p-2"
+                             role="group">
+                            <input (click)="onClickAddCrust(crust)" [checked]="i === 0" autocomplete="off"
+                                   class="btn-check" id="btnradio_crust{{i}}"
+                                   name="btnradio_crust"
+                                   type="radio">
+                            <!-- Selects and highlights Classic crust -->
+                            <label class="btn btn-outline-success" for="btnradio_crust{{i}}">
+                                <img [src]="crust.image" class="card-img-top ingredient-image mt-2">
+                                <h5 class="card-title m-2">{{crust.name}}</h5>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-success" matStepperNext type="button">
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step label="Sauce" state="sauce">
+                <p>2. Choose a Sauce</p>
+                <div class="wizard-scroll">
+                    <div class="d-flex flex-row" style="width:100%;">
+                        <div *ngFor="let sauce of sauces; index as i;" class="btn-group-vertical w-50 p-2" role="group">
+                            <input (click)="onClickAddSauce(sauce)" [checked]="i === 0 ? true : false"
+                                   autocomplete="off"
+                                   class="btn-check"
+                                   id="btnradio_sauce{{i}}"
+                                   name="btnradio_sauce"
+                                   type="radio">
+                            <label class="btn btn-outline-success" for="btnradio_sauce{{i}}">
+                                <img [src]="sauce.image" class="card-img-top ingredient-image mt-2">
+                                <h5 class="card-title m-2">{{sauce.name}}</h5>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-primary me-2" matStepperPrevious type="button">
+                        Back
+                    </button>
+                    <button class="btn btn-success" matStepperNext type="button">
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step label="Vegetables" state="vtoppings">
+                <p>3. Choose your Vegetables</p>
+                <div class="wizard-scroll">
+                    <div class="d-flex flex-row" style="width:200%;">
+                        <div *ngFor="let topping of toppings; index as i;">
+                            <div *ngIf="isVegetarian(topping.name)" class="card m-1 p-0"
+                                 style="width: 16rem; height: 100%;">
+                                <img [src]="topping.image" class="card-img-top ingredient-image"
+                                     style="width: 100%;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title">{{topping.name}}</h5>
+                                        </div>
+                                        <div class="col">
+                                            <div class="justify-content-end">
+                                                <button (click)="onClickAddTopping(topping)" class="btn btn-primary"
+                                                        type="button">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                                <button (click)="onClickRemoveTopping(topping)"
+                                                        class="btn btn-danger"
+                                                        type="button">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-primary me-2" matStepperPrevious type="button">
+                        Back
+                    </button>
+                    <button class="btn btn-success" matStepperNext type="button">
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step label="Proteins" state="ptoppings">
+                <p>4. Choose your Proteins</p>
+                <div class="wizard-scroll">
+                    <div class="d-flex flex-row" style="width:200%;">
+                        <div *ngFor="let topping of toppings; index as i;">
+                            <div *ngIf="isNonVegetarian(topping.name)" class="card m-1 p-0"
+                                 style="width: 16rem; height: 100%;">
+                                <img [src]="topping.image" class="card-img-top ingredient-image"
+                                     style="width: 100%;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title">{{topping.name}}</h5>
+                                        </div>
+                                        <div class="col">
+                                            <div class="justify-content-end">
+                                                <button (click)="onClickAddTopping(topping)" class="btn btn-primary"
+                                                        type="button">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                                <button (click)="onClickRemoveTopping(topping)"
+                                                        class="btn btn-danger"
+                                                        type="button">
+                                                    <i class="bi bi-dash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-primary me-2" matStepperPrevious type="button">
+                        Back
+                    </button>
+                    <button [disabled]="!(selectedToppings | async)?.length" class="btn btn-success" matStepperNext
+                            type="button">
+                        Next
+                    </button>
+                    <div *ngIf="!(selectedToppings | async)?.length" class="text-danger pt-2">
+                        In order to continue, <strong>you must select at-least 1 topping</strong>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step label="Name your pizza">
+                <p>5. Name your pizza (Optional)</p>
+                <div class="mb-3">
+                    <form [formGroup]="nameFormGroup">
+                        <label class="form-label" for="pizza-name">Name</label>
+                        <input class="form-control" formControlName="name" id="pizza-name" placeholder="Custom Creation"
+                               type="text">
+                    </form>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-primary me-2" matStepperPrevious type="button">
+                        Back
+                    </button>
+                    <button (click)="onClickAddToCart()" class="btn btn-success" type="button">
+                        Add to Cart
+                    </button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
 </div>

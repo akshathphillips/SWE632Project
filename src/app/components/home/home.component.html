@@ -99,7 +99,7 @@
 			</div>
 		</div>
 	</mat-drawer-content>
-	<mat-drawer #drawer [mode]="mobileQuery.matches ? 'push' : 'side'" position="end" style="width: 250px">
+	<mat-drawer #drawer [mode]="mobileQuery.matches ? 'push' : 'side'" class="app-mat-drawer-end" position="end">
 		<app-cart [usedInSidebar]="true"></app-cart>
 	</mat-drawer>
 </mat-drawer-container>

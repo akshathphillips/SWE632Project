@@ -43,60 +43,34 @@
 			<p class="lead">Cart is empty</p>
 		</div>
 	</div>
-	<div *ngIf="(selectedPizzas | async)?.length" [ngClass]="{ 'd-flex flex-column' : usedInSidebar }" class="row">
-		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" [ngClass]="{ 'p-3' : usedInSidebar }"
-			 class="col">
-			<div class="card w-100">
+
+	<div *ngIf="(selectedPizzas | async)?.length" [ngClass]="{ 'row-cols-md-3' : !usedInSidebar}"
+		 class="row row-cols-1 g-4">
+		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
+			<div class="card h-100">
+				<div class="card-header">
+					{{pizza.name}}
+				</div>
 				<div class="card-body">
-					<!-- Modified Card structure to make space for dropdown button -->
-					<h5 class="card-title row">
-						<div class="col">{{pizza.name}}</div>
-						<div class="col">
-							<img (click)="collapsed[i] = true"
-								 [attr.hidden]="collapsed[i] == null || collapsed[i] != true ? null : 'true'"
-								 [attr.id]="'chevron-down-' + i"
-								 src="/assets/chevron-down.png"
-								 style="height: 30px; float: right;">
-							<img (click)="collapsed[i] = false"
-								 [attr.hidden]="collapsed[i] == true ? null : 'true'"
-								 [attr.id]="'chevron-up-' + i"
-								 hidden src="/assets/chevron-up.png"
-								 style="height: 30px; float: right;">
+					<p class="card-text">
+						{{pizza.crust.name}} sauce, {{pizza.sauce.name}} crust,
+						{{displayToppings(pizza.toppings)}}
+					</p>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">
+						<div class="row">
+							<div class="col">
+								<div class="row row-cols-1">
+									<div class="col"><strong>Price:</strong> $12.99</div>
+									<div class="col"><strong>Quantity:</strong> {{ pizza.qty }}</div>
+								</div>
+							</div>
+							<div class="col-auto">
+								<button (click)="onClickRemovePizza(i)" class="btn btn-danger">Remove</button>
+							</div>
 						</div>
-					</h5>
-					<div *ngIf="collapsed[i] == true" class="card-text">
-						<p>$12.99</p>
-						<ul class="list-group card">
-							<li class="list-group-item d-flex justify-content-between align-items-start">
-								<div class="ms-2 me-auto">
-									<div class="fw-bold">{{pizza.crust.name}}</div>
-									Crust
-								</div>
-								<span
-									class="badge bg-primary rounded-pill">{{pizza.crust.addedCount}}</span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between align-items-start">
-								<div class="ms-2 me-auto">
-									<div class="fw-bold">{{pizza.sauce.name}}</div>
-									Sauce
-								</div>
-								<span
-									class="badge bg-primary rounded-pill">{{pizza.sauce.addedCount}}</span>
-							</li>
-							<li *ngFor="let topping of pizza.toppings; index as i;"
-								class="list-group-item d-flex justify-content-between align-items-start">
-								<div class="ms-2 me-auto">
-									<div class="fw-bold">{{topping.name}}</div>
-									Topping
-								</div>
-								<span class="badge bg-primary rounded-pill">{{topping.addedCount}}</span>
-							</li>
-						</ul>
-					</div>
-					<div class="d-flex justify-content-between mt-3">
-						<div>Quantity : {{ pizza.qty }}</div>
-						<button (click)="onClickRemovePizza(i)" class="btn btn-danger">Remove</button>
-					</div>
+					</small>
 				</div>
 			</div>
 		</div>

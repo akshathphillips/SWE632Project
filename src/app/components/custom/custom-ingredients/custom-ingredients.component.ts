@@ -8,7 +8,7 @@ import {
 	ViewChild,
 	ViewEncapsulation
 } from '@angular/core';
-import { Crust, CustomService, Sauce, Topping } from "../../../services";
+import { CartService, Crust, CustomService, Sauce, Topping } from "../../../services";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { Toast } from "bootstrap";
 import { Router } from "@angular/router";
@@ -63,9 +63,11 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 	]
 
 	@ViewChild('errorToast', {static: true}) errorToastElement: ElementRef | any;
+	@ViewChild('sameNameErrorToast', {static: true}) sameNameErrorToastElement: ElementRef | any;
 	@ViewChild('successToast', {static: true}) successToastElement: ElementRef | any;
 
 	errorToast: Toast | any;
+	sameNameErrorToast: Toast | any;
 	successToast: Toast | any;
 
 	manyToppingToast: Toast | any;
@@ -87,7 +89,11 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 
 	nameFormGroup: FormGroup | any;
 
-	constructor(private customService: CustomService, private router: Router, private _formBuilder: FormBuilder) {
+	constructor(
+		private customService: CustomService,
+		private cartService: CartService,
+		private router: Router,
+		private _formBuilder: FormBuilder) {
 	}
 
 	ngOnInit(): void {
@@ -164,6 +170,7 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 		this.selectedCrustToast = new Toast(this.selectedCrustToastElement.nativeElement);
 		this.recentToppingToast = new Toast(this.recentToppingToastElement.nativeElement);
 		this.errorToast = new Toast(this.errorToastElement.nativeElement);
+		this.sameNameErrorToast = new Toast(this.sameNameErrorToastElement.nativeElement);
 		this.successToast = new Toast(this.successToastElement.nativeElement);
 	}
 
@@ -179,11 +186,32 @@ export class CustomIngredientsComponent implements OnInit, OnDestroy, AfterViewI
 		if (!this.selectedCrust.value || !this.selectedSauce.value || !this.selectedToppings.value?.length) {
 			this.errorToast.show();
 		} else {
-			this.successToast.show();
-			this.customService.addToCart(this.nameFormGroup?.get('name')?.value);
-			setTimeout(() => {
-				this.router.navigate(['/']);
-			}, 1500)
+			if (this.nameFormGroup?.get('name')?.value) {
+				let sameName: boolean = false;
+				const currentPizzas = this.cartService.getPizzas();
+				currentPizzas.forEach((p) => {
+					if (p.name === this.nameFormGroup.get('name').value) {
+						sameName = true;
+						return;
+					}
+				})
+
+				if (sameName) {
+					this.sameNameErrorToast.show();
+				} else {
+					this.successToast.show();
+					this.customService.addToCart(this.nameFormGroup.get('name').value);
+					setTimeout(() => {
+						this.router.navigate(['/']);
+					}, 1500)
+				}
+			} else {
+				this.successToast.show();
+				this.customService.addToCart();
+				setTimeout(() => {
+					this.router.navigate(['/']);
+				}, 1500)
+			}
 		}
 	}
 }
