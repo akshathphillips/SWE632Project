@@ -32,20 +32,40 @@
 			<div class="container-fluid">
 				<h1 class="jumbotron-heading">Welcome to Pizza Creation</h1>
 				<p class="lead text-muted">SWE 632 - Group Project - Akshath Phillips, Daksha Arora, Madhav Shroff</p>
-				<p><a class="btn btn-primary my-2 mx-2" href="#" routerLink="/custom" routerLinkActive="active">
-					Create your own pizza
-				</a>
-				</p>
 			</div>
 		</section>
 
 		<div class="album py-3 bg-light">
 			<div class="container-fluid">
-				<h1 class="display-4">Our Pizzas</h1>
+				<h1 class="display-4" style="margin-bottom: 0">Our Pizzas</h1>
 				<div class="row">
-
-					<!---->
 					<div class="row row-cols-1 row-cols-md-4 g-4">
+						<div class="col">
+							<div class="card h-100 position-relative app-shadow">
+								<img [src]="'/assets/empty_pizza.jpeg'"
+									 class="card-img-top pizza-image">
+
+								<div class="card-body">
+									<h3 class="card-title">Create your own</h3>
+									<h4 class="card-subtitle mb-2 text-muted text-lowercase">
+										unlimited kinds toppings (limit to 2 per topping)
+									</h4>
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">
+										<div class="row align-items-center">
+											<div class="col">Creation time: ~9 mins</div>
+											<div class="col-auto">
+												<button class="btn btn-sm btn-success"
+														routerLink="/custom"
+														type="button">Create
+												</button>
+											</div>
+										</div>
+									</small>
+								</div>
+							</div>
+						</div>
 						<div *ngFor="let speciality of specialities; index as i;" class="col">
 							<div class="card h-100 position-relative app-shadow">
 								<div *ngIf="isVegetarian(speciality.name); then thenBlock else elseBlock"></div>
