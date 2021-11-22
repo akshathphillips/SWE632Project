@@ -41,39 +41,26 @@
 
 		<div class="album py-3 bg-light">
 			<div class="container-fluid">
-				<h1 class="display-4">Speciality Pizzas</h1>
-				<h1 class="display-6">Non Vegetarian</h1>
+				<h1 class="display-4">Our Pizzas</h1>
 				<div class="row">
 					<ng-container *ngFor="let speciality of specialities; index as i;">
-						<div *ngIf="isNonVegetarian(speciality.name)" class="col-md-4">
-							<div class="card mb-4 box-shadow">
-								<img [src]="speciality.image"
-									 class="card-img-top pizza-image">
-								<div class="card-body">
-									<h5 class="card-title">{{speciality.name}}</h5>
-									<h6 class="card-subtitle mb-2 text-muted">
-										{{speciality.pizza.crust.name}} sauce, {{speciality.pizza.sauce.name}} crust,
-										{{displayToppings(speciality.pizza.toppings)}}
-									</h6>
-									<div class="d-flex justify-content-between align-items-center">
-										<div class="btn-group">
-											<button (click)="onClickAddToCart(speciality.pizza)"
-													class="btn btn-sm btn-success"
-													type="button">Add to cart
-											</button>
-										</div>
-										<small class="text-muted">Creation time: {{speciality.pizza.time}} mins</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</ng-container>
-				</div>
-				<h1 class="display-6 mt-2">Vegetarian</h1>
-				<div class="row">
-					<ng-container *ngFor="let speciality of specialities; index as i;">
-						<div *ngIf="isVegetarian(speciality.name)" class="col-md-4">
-							<div class="card mb-4 box-shadow">
+						<div class="col-md-4">
+							<div class="card mb-4 box-shadow position-relative">
+								<div *ngIf="isVegetarian(speciality.name); then thenBlock else elseBlock"></div>
+								<ng-template #thenBlock>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+										style="cursor: default"
+										title="Vegetarian Pizzas">V <span
+										class="visually-hidden">vegetarian pizzas</span></span>
+								</ng-template>
+								<ng-template #elseBlock>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+										style="cursor: default"
+										title="Non-vegetarian Pizzas">NV <span
+										class="visually-hidden">non-vegetarian pizzas</span></span>
+								</ng-template>
 								<img [src]="speciality.image"
 									 class="card-img-top pizza-image">
 								<div class="card-body">
