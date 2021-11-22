@@ -52,9 +52,9 @@
 					{{pizza.name}}
 				</div>
 				<div class="card-body">
-					<p class="card-text">
+					<p class="card-text text-lowercase">
 						{{pizza.crust.name}} sauce, {{pizza.sauce.name}} crust,
-						{{displayToppings(pizza.toppings)}}
+						<span [innerHTML]="displayToppings(pizza.toppings)"></span>
 					</p>
 				</div>
 				<div class="card-footer">
