@@ -137,5 +137,27 @@
 <!--End Main-->
 
 <!--Footer-->
-
+<footer class="p-4 my-md-5 pt-md-5 border-top mt-auto text-white-50" style="background-color: #212529">
+	<div class="row pb-2">
+		<div class="col-12 col-md">
+			<a class="text-white" routerLink="/home">Pizza Creation</a>
+			<small class="d-block mb-3 text-muted">SWE 632 - Fall 2021</small>
+		</div>
+		<div class="col-6 col-md">
+			<h5>Links</h5>
+			<ul class="list-unstyled text-small">
+				<li class="mb-1"><a class="link-secondary text-decoration-none" routerLink="/home">Home</a></li>
+				<li class="mb-1"><a (click)="onClickOrder()" class="link-secondary text-decoration-none"
+									style="cursor: pointer">Order</a></li>
+			</ul>
+		</div>
+		<div class="col-6 col-md">
+			<h5>About</h5>
+			<ul class="list-unstyled text-small">
+				<li class="mb-1"><a class="link-secondary text-decoration-none"
+									href="https://cs.gmu.edu/~tlatoza/teaching/swe632f21/home.html">Course</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
 <!--End Footer-->
