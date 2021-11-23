@@ -7,8 +7,8 @@ export interface Pizza {
 	sauce: Sauce;
 	toppings: Topping[];
 	time: number;
-	name : String;
-	qty: number; // Added quantity attribute to reduce number of cards in the cart page. 
+	name: String;
+	qty: number; // Added quantity attribute to reduce number of cards in the cart page.
 }
 
 @Injectable({
@@ -17,6 +17,8 @@ export interface Pizza {
 export class CartService {
 
 	pizzasChanged = new BehaviorSubject<Pizza[] | null>(null);
+
+	scrollToMenu = new BehaviorSubject<boolean | any>(null);
 
 	private pizzas: Pizza[] | null = null;
 
@@ -53,7 +55,7 @@ export class CartService {
 	deletePizza(index: number) {
 		if (this.pizzas && this.pizzas.length) {
 			//Decrement quantity if > 1, else remove from list if qty == 1
-			if(this.pizzas[index].qty > 1) 
+			if (this.pizzas[index].qty > 1)
 				this.pizzas[index].qty = this.pizzas[index].qty - 1
 			else this.pizzas.splice(index, 1);
 			this.pizzasChanged.next(this.pizzas.slice());

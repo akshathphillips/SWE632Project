@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { CartService, Pizza } from "./services";
 import { BehaviorSubject, Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	pizzasSubscription: Subscription | undefined;
 
-	constructor(private cartService: CartService) {
+	constructor(private cartService: CartService, private activatedRoute: Router) {
 	}
 
 	ngOnInit(): void {
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	getQuantity(selectedPizzas: BehaviorSubject<Pizza[] | any>) : number {
+	getQuantity(selectedPizzas: BehaviorSubject<Pizza[] | any>): number {
 		var arr = selectedPizzas.getValue()
 		var sum = 0;
 		arr.forEach((element: Pizza) => sum = sum + element["qty"]);
@@ -33,5 +34,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {
 		this.pizzasSubscription?.unsubscribe();
+	}
+
+	onClickOrder() {
+		if (!this.activatedRoute.url.includes('home')) {
+			this.activatedRoute.navigate(['home']);
+		}
+		setTimeout(() => {
+			this.cartService.scrollToMenu.next(true);
+		}, 1000)
 	}
 }
