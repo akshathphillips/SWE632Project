@@ -48,18 +48,16 @@
 		 class="row row-cols-1 g-4">
 		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
 			<div class="card h-100">
-				<div class="card-header">
-					{{pizza.name}}
-				</div>
 				<div class="card-body">
-					<p class="card-text text-lowercase">
+					<h3 class="card-title">{{pizza.name}}</h3>
+					<h4 class="card-subtitle mb-2 text-muted text-lowercase">
 						{{pizza.crust.name}} sauce, {{pizza.sauce.name}} crust,
 						<span [innerHTML]="displayToppings(pizza.toppings)"></span>
-					</p>
+					</h4>
 				</div>
 				<div class="card-footer">
 					<small class="text-muted">
-						<div class="row">
+						<div class="row align-items-center">
 							<div class="col">
 								<div class="row row-cols-1">
 									<div class="col"><strong>Price:</strong> $12.99</div>

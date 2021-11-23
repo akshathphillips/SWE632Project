@@ -6,6 +6,12 @@
 			<li aria-current="page" class="breadcrumb-item active">Checkout</li>
 		</ol>
 	</nav>
+	<div class="d-flex justify-content-between">
+		<h1 class="display-6">Cart</h1>
+		<button class="btn btn-success align-self-center" routerLink="/order-success"
+				type="submit">Place Order
+		</button>
+	</div>
 </div>
 <div class="container-fluid">
 	<form class="row g-3">
@@ -60,11 +66,6 @@
 			<label class="form-label" for="inputPassword4">Billing Zipcode</label>
 			<input class="form-control" id="billingZipcode" type="number"
 				   value="22030">
-		</div>
-		<div class="col-12 d-flex justify-content-center">
-			<button class="btn btn-success" routerLink="/order-success"
-					type="submit">Place Order
-			</button>
 		</div>
 	</form>
 </div>
