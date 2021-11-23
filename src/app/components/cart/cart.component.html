@@ -47,7 +47,7 @@
 	<div *ngIf="(selectedPizzas | async)?.length" [ngClass]="{ 'row-cols-md-3' : !usedInSidebar}"
 		 class="row row-cols-1 g-4">
 		<div *ngFor="let pizza of (selectedPizzas | async); index as i;" class="col">
-			<div class="card h-100">
+			<div class="card h-100 app-shadow">
 				<div class="card-body">
 					<h3 class="card-title">{{pizza.name}}</h3>
 					<h4 class="card-subtitle mb-2 text-muted text-lowercase">

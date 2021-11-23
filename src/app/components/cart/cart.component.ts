@@ -61,7 +61,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterViewInit {
 			if (v.addedCount > 1) {
 				toppingsNames.push(' <strong>extra</strong> ' + v.name);
 			} else {
-				toppingsNames.push(v.name);
+				toppingsNames.push(' ' + v.name);
 			}
 		})
 		return toppingsNames;

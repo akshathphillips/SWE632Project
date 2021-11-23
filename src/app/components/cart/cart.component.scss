@@ -1,0 +1,8 @@
+.app-shadow {
+	box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	//padding: 1rem !important;
+	//margin-bottom: 3rem !important;
+	--bs-bg-opacity: 1;
+	background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
+	border-radius: 0.25rem !important;
+}
