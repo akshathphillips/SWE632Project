@@ -1,76 +1,76 @@
-<div class="container-fluid">
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1022">
-        <div #manyToppingToast aria-atomic="true" aria-live="assertive"
-             class="toast align-items-center text-white bg-warning border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Maximum of double toppings allowed. Cannot add more of the same topping.
-                </div>
-            </div>
-        </div>
+<div class="container-fluid pb-5">
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1022">
+		<div #manyToppingToast aria-atomic="true" aria-live="assertive"
+			 class="toast align-items-center text-white bg-warning border-0" role="alert">
+			<div class="d-flex">
+				<div class="toast-body">
+					Maximum of double toppings allowed. Cannot add more of the same topping.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #selectedCrustToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+			<div *ngIf="(selectedCrust | async)" class="d-flex">
+				<div class="toast-body">
+					Pizza crust changed to {{(selectedCrust | async).name}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #selectedSauceToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
+			<div *ngIf="(selectedSauce | async)" class="d-flex">
+				<div class="toast-body">
+					Pizza sauce changed to {{(selectedSauce | async).name}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #recentToppingToast aria-atomic="true"
+			 aria-live="assertive" class="toast align-items-center text-white bg-info border-0"
+			 role="alert">
+			<div *ngIf="(recentTopping | async)" class="d-flex">
+				<div class="toast-body">
+					Topping {{(recentTopping | async).name}} added! Your pizza now has quantity:
+					{{(recentTopping | async).addedCount}} of {{(recentTopping | async).name}}.
+				</div>
+			</div>
+		</div>
     </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #selectedCrustToast aria-atomic="true"
-             aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
-            <div *ngIf="(selectedCrust | async)" class="d-flex">
-                <div class="toast-body">
-                    Pizza crust changed to {{(selectedCrust | async).name}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #selectedSauceToast aria-atomic="true"
-             aria-live="assertive" class="toast align-items-center text-white bg-info border-0" role="alert">
-            <div *ngIf="(selectedSauce | async)" class="d-flex">
-                <div class="toast-body">
-                    Pizza sauce changed to {{(selectedSauce | async).name}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #recentToppingToast aria-atomic="true"
-             aria-live="assertive" class="toast align-items-center text-white bg-info border-0"
-             role="alert">
-            <div *ngIf="(recentTopping | async)" class="d-flex">
-                <div class="toast-body">
-                    Topping {{(recentTopping | async).name}} added! Your pizza now has quantity:
-                    {{(recentTopping | async).addedCount}} of {{(recentTopping | async).name}}.
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #errorToast aria-atomic="true" aria-live="assertive"
-             class="toast align-items-center text-white bg-danger border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Error! Pizza options missing.
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #sameNameErrorToast aria-atomic="true" aria-live="assertive"
-             class="toast align-items-center text-white bg-danger border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Error! A pizza with the same name already exists.
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1021">
-        <div #successToast aria-atomic="true" aria-live="assertive"
-             class="toast align-items-center text-white bg-success border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Success! Added custom pizza to cart.
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #errorToast aria-atomic="true" aria-live="assertive"
+			 class="toast align-items-center text-white bg-danger border-0" role="alert">
+			<div class="d-flex">
+				<div class="toast-body">
+					Error! Pizza options missing.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #sameNameErrorToast aria-atomic="true" aria-live="assertive"
+			 class="toast align-items-center text-white bg-danger border-0" role="alert">
+			<div class="d-flex">
+				<div class="toast-body">
+					Error! A pizza with the same name already exists.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-fixed bottom-0 end-0 p-3 pb-5" style="z-index: 1021">
+		<div #successToast aria-atomic="true" aria-live="assertive"
+			 class="toast align-items-center text-white bg-success border-0" role="alert">
+			<div class="d-flex">
+				<div class="toast-body">
+					Success! Added custom pizza to cart.
+				</div>
+			</div>
+		</div>
+	</div>
 
     <h1 class="display-1">Create your own pizza</h1>
     <div class="my-3">
